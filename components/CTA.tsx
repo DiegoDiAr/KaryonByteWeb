@@ -84,13 +84,14 @@ export function CTA() {
             className="absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-karion-purple to-transparent"
           />
           <div ref={contentRef} className="relative mx-auto max-w-3xl">
-            <div className="mx-auto mb-8 flex h-20 w-64 items-center justify-center">
+            <div className="mx-auto mb-8 flex justify-center pointer-events-none">
               <Image
                 src="/logo-karionbyte.png"
                 alt="KarionByte"
-                width={260}
-                height={82}
-                className="h-auto max-h-20 w-auto object-contain"
+                width={500}
+                height={500}
+                unoptimized
+                className="w-[200px] h-auto object-contain scale-125"
               />
             </div>
             <div className="mx-auto mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-sm text-white/72">

@@ -8,7 +8,7 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const phrase = "No somos simples programadores. Somos arquitectos de soluciones B2B. Traducimos la complejidad de tus operaciones en ecosistemas digitales escalables, rápidos y precisos.";
+const phrase = "No somos simples programadores. Desarrollamos páginas web y sistemas a medida. Traducimos tus ideas en soluciones digitales escalables, rápidas y precisas.";
 
 export function Philosophy() {
   const container = useRef<HTMLDivElement>(null);
@@ -45,8 +45,11 @@ export function Philosophy() {
   }, []);
 
   return (
-    <section ref={container} className="relative z-10 bg-deep-space py-32 px-6 sm:py-48 lg:px-8">
-      <div className="mx-auto max-w-5xl">
+    <section ref={container} className="relative z-10 bg-[#020005] py-32 px-6 sm:py-48 lg:px-8">
+      {/* Top Fade Gradient for smooth transition from Hero */}
+      <div className="absolute top-0 left-0 w-full h-48 bg-gradient-to-b from-transparent to-[#020005] -translate-y-full pointer-events-none" />
+      
+      <div className="mx-auto max-w-5xl relative z-10">
         <p className="mb-8 text-sm font-semibold tracking-widest text-karion-purple uppercase">
           Nuestra Filosofía
         </p>

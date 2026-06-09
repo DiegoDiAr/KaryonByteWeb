@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -72,9 +73,17 @@ export function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-8 rounded-full border border-white/10 bg-white/5 px-6 py-2 text-sm font-medium tracking-wide text-electric-blue backdrop-blur-md"
+          className="mb-8 flex justify-center pointer-events-none"
         >
-          Agencia de Desarrollo B2B
+          <Image
+            src="/logo-karionbyte.png"
+            alt="KarionByte"
+            width={500}
+            height={500}
+            priority
+            unoptimized
+            className="w-[300px] sm:w-[450px] h-auto object-contain scale-125"
+          />
         </motion.div>
         
         <h1 ref={titleRef} className="text-balance text-[12vw] font-bold leading-[0.9] tracking-tighter sm:text-[8vw]">
@@ -94,7 +103,15 @@ export function Hero() {
           className="mt-16"
         >
           <Magnetic>
-            <button className="group relative flex h-40 w-40 items-center justify-center rounded-full bg-white/5 border border-white/10 text-white backdrop-blur-md transition-colors hover:bg-white/10 hover:border-karion-purple/50">
+            <button 
+              onClick={() => {
+                window.scrollTo({
+                  top: window.innerHeight,
+                  behavior: "smooth"
+                });
+              }}
+              className="group relative flex h-40 w-40 items-center justify-center rounded-full bg-white/5 border border-white/10 text-white backdrop-blur-md transition-colors hover:bg-white/10 hover:border-karion-purple/50"
+            >
               <span className="relative z-10 flex flex-col items-center gap-2">
                 <span className="text-sm font-semibold tracking-widest uppercase">Empezar</span>
                 <span className="h-2 w-2 rounded-full bg-electric-blue shadow-glow-blue animate-pulse" />

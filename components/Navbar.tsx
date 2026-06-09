@@ -33,16 +33,15 @@ export function Navbar() {
       className="fixed left-0 right-0 top-0 z-50 border-b backdrop-blur-2xl"
     >
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
-        <a href="#inicio" aria-label="KarionByte inicio" className="group flex items-center">
+        <a href="#inicio" aria-label="KarionByte inicio" className="group flex items-center bg-white rounded-xl px-3 py-1.5 transition-transform hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
           <Image
             src="/logo-karionbyte.png"
             alt="KarionByte"
             width={230}
             height={70}
             priority
-            className="h-10 w-auto rounded-sm object-contain brightness-110 contrast-125 sm:h-12"
+            className="h-8 w-auto object-contain sm:h-10"
           />
-          <span className="sr-only">KarionByte</span>
         </a>
 
         <div className="hidden items-center gap-8 lg:flex">

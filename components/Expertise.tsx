@@ -13,7 +13,7 @@ const services = [
   {
     icon: Layout,
     title: "Ecosistemas Web",
-    desc: "Sitios corporativos y aplicaciones web inmersivas, optimizadas para rendimiento extremo y conversión B2B.",
+    desc: "Sitios corporativos y aplicaciones web inmersivas, optimizadas para rendimiento extremo y alta conversión.",
     color: "from-karion-purple to-neon-purple",
   },
   {
@@ -57,10 +57,12 @@ export function Expertise() {
             left: 0,
             width: "100%",
             zIndex: cards.length - i,
-            scale: 1 - i * 0.05,
-            y: i * 30,
-            opacity: 1 - i * 0.25,
-            transformOrigin: "top center",
+            scale: i === 0 ? 1.15 : 0.95 - i * 0.05,
+            y: i * 35,
+            opacity: i === 0 ? 1 : 0.6 - i * 0.2,
+            transformOrigin: "center center",
+            boxShadow: i === 0 ? "0 0 60px rgba(115,58,237,0.15)" : "none",
+            borderColor: i === 0 ? "rgba(115,58,237,0.6)" : "rgba(255,255,255,0.1)",
           });
         });
 
@@ -83,6 +85,7 @@ export function Expertise() {
             x: "120%",
             opacity: 0,
             rotate: 5,
+            scale: 0.8,
             duration: 1,
             ease: "power2.inOut",
           }, i);
@@ -92,9 +95,11 @@ export function Expertise() {
             const newIndex = j - (i + 1);
             
             tl.to(nextCard, {
-              scale: 1 - newIndex * 0.05,
-              y: newIndex * 30,
-              opacity: 1 - newIndex * 0.25,
+              scale: newIndex === 0 ? 1.15 : 0.95 - newIndex * 0.05,
+              y: newIndex * 35,
+              opacity: newIndex === 0 ? 1 : 0.6 - newIndex * 0.2,
+              boxShadow: newIndex === 0 ? "0 0 60px rgba(115,58,237,0.15)" : "none",
+              borderColor: newIndex === 0 ? "rgba(115,58,237,0.6)" : "rgba(255,255,255,0.1)",
               duration: 1,
               ease: "power2.inOut",
             }, i);
@@ -129,7 +134,7 @@ export function Expertise() {
       <div className="absolute inset-0 bg-mesh-gradient opacity-30 mix-blend-screen pointer-events-none" />
       
       <div className="relative z-10 mx-auto w-full max-w-7xl">
-        <div className="flex flex-col md:flex-row gap-12 lg:gap-24 items-center">
+        <div className="flex flex-col md:flex-row gap-12 lg:gap-24 items-start">
           
           {/* Left Content */}
           <div className="w-full md:w-1/2 flex flex-col items-start gap-4">
@@ -148,7 +153,7 @@ export function Expertise() {
           <div className="w-full md:w-1/2 relative h-[450px]">
             <div ref={cardsRef} className="relative w-full h-full flex flex-col gap-6 md:block">
               {services.map((service, i) => (
-                <div key={i} className="md:absolute md:top-0 md:left-0 md:w-full">
+                <div key={i} className="md:absolute md:top-0 md:left-0 md:w-full rounded-[2rem]">
                   <ServiceCard {...service} index={i} />
                 </div>
               ))}
@@ -178,7 +183,7 @@ function ServiceCard({ icon: Icon, title, desc, color }: any) {
     <div
       ref={cardRef}
       onMouseMove={handleMouseMove}
-      className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#080312] p-8 lg:p-10 transition-transform duration-300 hover:-translate-y-2 h-full shadow-[0_0_40px_rgba(0,0,0,0.5)]"
+      className="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#080312] p-8 lg:p-10 transition-transform duration-300 hover:-translate-y-2 h-full"
     >
       <div
         className="pointer-events-none absolute -inset-px rounded-[2rem] opacity-0 transition duration-300 group-hover:opacity-100"

@@ -9,7 +9,7 @@ if (typeof window !== "undefined") {
 }
 
 const steps = [
-  { num: "01", title: "Descubrimiento", desc: "Auditoría técnica y análisis de requerimientos B2B." },
+  { num: "01", title: "Descubrimiento", desc: "Auditoría técnica y análisis de requerimientos del sistema." },
   { num: "02", title: "Arquitectura", desc: "Diseño de la infraestructura en la nube y modelos de datos." },
   { num: "03", title: "Desarrollo", desc: "Ingeniería de software con sprints ágiles y código limpio." },
   { num: "04", title: "Despliegue", desc: "Integración continua, pruebas de estrés y lanzamiento." },
@@ -64,7 +64,7 @@ export function WorkFlow() {
         cards.forEach((card, i) => {
           gsap.set(card, { 
             scale: 0.75, 
-            opacity: 0.2, 
+            opacity: 0.4, 
             borderColor: "rgba(255,255,255,0.05)",
             transformOrigin: "center center"
           });
@@ -80,7 +80,7 @@ export function WorkFlow() {
             // Shrinks as it moves left
             tl.to(card, {
               scale: 0.75,
-              opacity: 0.2,
+              opacity: 0.4,
               borderColor: "rgba(255,255,255,0.05)",
               boxShadow: "none",
               ease: "power2.inOut",
@@ -101,7 +101,7 @@ export function WorkFlow() {
             if (i !== cards.length - 1) {
               tl.to(card, {
                 scale: 0.75,
-                opacity: 0.2,
+                opacity: 0.4,
                 borderColor: "rgba(255,255,255,0.05)",
                 boxShadow: "none",
                 ease: "power2.inOut",
@@ -140,18 +140,18 @@ export function WorkFlow() {
         {steps.map((step, i) => (
           <div 
             key={i} 
-            className="group relative flex w-full flex-col justify-between rounded-[2rem] border border-white/10 bg-white/[0.03] p-10 lg:h-[450px] lg:w-[450px]"
+            className="group relative flex w-full flex-col justify-between rounded-[2rem] border border-white/10 bg-[#080312] p-10 lg:h-[450px] lg:w-[450px]"
           >
-            <span className="text-6xl font-bold text-white/5 transition-colors group-hover:text-karion-purple/20">
+            <span className="text-8xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white/30 to-white/5">
               {step.num}
             </span>
             <div>
-              <h3 className="mb-4 text-3xl font-medium text-white">{step.title}</h3>
-              <p className="text-lg text-white/50">{step.desc}</p>
+              <h3 className="mb-4 text-4xl font-semibold text-white">{step.title}</h3>
+              <p className="text-xl text-white/80 leading-relaxed">{step.desc}</p>
             </div>
             {/* Connecting line on desktop */}
             {i !== steps.length - 1 && (
-              <div className="absolute top-1/2 -right-6 hidden w-6 h-px bg-white/10 lg:block" />
+              <div className="absolute top-1/2 -right-10 hidden w-10 h-px bg-white/20 lg:block" />
             )}
           </div>
         ))}
