@@ -29,20 +29,86 @@ export function WorkFlow() {
       mm.add("(min-width: 1024px)", () => {
         if (!trackRef.current || !sectionRef.current) return;
         
-        const totalWidth = trackRef.current.scrollWidth;
+        const cards = Array.from(trackRef.current.children) as HTMLElement[];
         const viewportWidth = window.innerWidth;
+        
+        // Calculate offsets to perfectly center the first and last card
+        const firstCard = cards[0];
+        const lastCard = cards[cards.length - 1];
+        
+        const startX = viewportWidth / 2 - (firstCard.offsetLeft + firstCard.offsetWidth / 2);
+        const endX = viewportWidth / 2 - (lastCard.offsetLeft + lastCard.offsetWidth / 2);
 
-        gsap.to(trackRef.current, {
-          x: () => -(totalWidth - viewportWidth + 100),
-          ease: "none",
+        // Instantly center the first card before any scrolling happens
+        gsap.set(trackRef.current, { x: startX });
+
+        const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "center center",
-            end: () => `+=${totalWidth}`,
+            end: `+=${cards.length * 600}`, // Extended scroll duration for smoothness
             pin: true,
             scrub: 1,
             anticipatePin: 1,
           },
+        });
+
+        // Track horizontal movement mapping exactly to the centers
+        tl.to(trackRef.current, {
+          x: endX,
+          ease: "none",
+          duration: cards.length - 1,
+        }, 0);
+
+        // Sequence individual card scales and focus (Cover Flow)
+        cards.forEach((card, i) => {
+          gsap.set(card, { 
+            scale: 0.75, 
+            opacity: 0.2, 
+            borderColor: "rgba(255,255,255,0.05)",
+            transformOrigin: "center center"
+          });
+          
+          if (i === 0) {
+            // First card starts focused and centered
+            gsap.set(card, { 
+              scale: 1.15, 
+              opacity: 1, 
+              borderColor: "rgba(115,58,237,0.8)", 
+              boxShadow: "0 0 80px rgba(115,58,237,0.2)" 
+            });
+            // Shrinks as it moves left
+            tl.to(card, {
+              scale: 0.75,
+              opacity: 0.2,
+              borderColor: "rgba(255,255,255,0.05)",
+              boxShadow: "none",
+              ease: "power2.inOut",
+              duration: 1,
+            }, 0);
+          } else {
+            // Other cards grow into focus as they hit the center
+            tl.to(card, {
+              scale: 1.15,
+              opacity: 1,
+              borderColor: "rgba(115,58,237,0.8)",
+              boxShadow: "0 0 80px rgba(115,58,237,0.2)",
+              ease: "power2.inOut",
+              duration: 1,
+            }, i - 1);
+            
+            // Shrink out of focus as they leave the center (unless it's the very last card)
+            if (i !== cards.length - 1) {
+              tl.to(card, {
+                scale: 0.75,
+                opacity: 0.2,
+                borderColor: "rgba(255,255,255,0.05)",
+                boxShadow: "none",
+                ease: "power2.inOut",
+                duration: 1,
+              }, i);
+            }
+          }
         });
       });
 
@@ -66,11 +132,11 @@ export function WorkFlow() {
 
   return (
     <section ref={sectionRef} className="relative z-10 bg-[#020005] py-24 sm:py-32 overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-16 lg:mb-24">
-        <h2 className="text-3xl font-semibold text-white sm:text-5xl">Nuestro Pipeline</h2>
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-16 lg:mb-24 flex justify-center">
+        <h2 className="text-3xl font-semibold text-white sm:text-5xl text-center">Nuestro Pipeline</h2>
       </div>
 
-      <div ref={trackRef} className="flex flex-col gap-6 px-6 lg:flex-row lg:w-max lg:px-8">
+      <div ref={trackRef} className="flex flex-col gap-6 px-6 lg:flex-row lg:gap-20 lg:w-max lg:px-8">
         {steps.map((step, i) => (
           <div 
             key={i} 
