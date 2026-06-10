@@ -9,10 +9,11 @@ if (typeof window !== "undefined") {
 }
 
 const steps = [
-  { num: "01", title: "Descubrimiento", desc: "Auditoría técnica y análisis de requerimientos del sistema." },
-  { num: "02", title: "Arquitectura", desc: "Diseño de la infraestructura en la nube y modelos de datos." },
-  { num: "03", title: "Desarrollo", desc: "Ingeniería de software con sprints ágiles y código limpio." },
-  { num: "04", title: "Despliegue", desc: "Integración continua, pruebas de estrés y lanzamiento." },
+  { num: "01", title: "Descubrimiento", desc: "Analizamos tu negocio, tus objetivos y las funcionalidades que necesita tu página web o software a medida." },
+  { num: "02", title: "Arquitectura", desc: "Definimos la estructura del sistema, base de datos, módulos y tecnologías necesarias para tu solución digital." },
+  { num: "03", title: "Desarrollo", desc: "Construimos tu plataforma web por etapas, con avances revisables, código limpio y enfoque en automatización de procesos." },
+  { num: "04", title: "Despliegue", desc: "Probamos, optimizamos y publicamos tu proyecto. También te acompañamos durante la puesta en marcha." },
+  { num: "05", title: "Soporte", desc: "Monitoreamos, corregimos y escalamos tu sistema empresarial acompañando el crecimiento de tu negocio." },
 ];
 
 export function WorkFlow() {
@@ -131,9 +132,9 @@ export function WorkFlow() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative z-10 bg-[#020005] py-24 sm:py-32 overflow-hidden">
+    <section ref={sectionRef} id="proceso" aria-label="Nuestro proceso de trabajo" className="relative z-10 bg-[#020005] py-24 sm:py-32 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-16 lg:mb-24 flex justify-center">
-        <h2 className="text-3xl font-semibold text-white sm:text-5xl text-center">Nuestro Pipeline</h2>
+        <h2 className="text-3xl font-semibold text-white sm:text-5xl text-center">Cómo trabajamos</h2>
       </div>
 
       <div ref={trackRef} className="flex flex-col gap-6 px-6 lg:flex-row lg:gap-20 lg:w-max lg:px-8">

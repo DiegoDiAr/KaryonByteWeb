@@ -12,20 +12,20 @@ if (typeof window !== "undefined") {
 const services = [
   {
     icon: Layout,
-    title: "Ecosistemas Web",
-    desc: "Sitios corporativos y aplicaciones web inmersivas, optimizadas para rendimiento extremo y alta conversión.",
+    title: "Páginas Web Profesionales",
+    desc: "Desarrollo de páginas web corporativas, landing pages y aplicaciones web modernas, rápidas y optimizadas para convertir visitantes en clientes.",
     color: "from-karion-purple to-neon-purple",
   },
   {
     icon: Server,
-    title: "Sistemas Operativos",
-    desc: "Plataformas de software internas que automatizan y conectan todos tus procesos de negocio (ERP/CRM a medida).",
+    title: "Sistemas y Software a Medida",
+    desc: "Creamos sistemas web empresariales para gestionar ventas, inventario, pedidos y procesos administrativos desde una sola plataforma unificada.",
     color: "from-electric-blue to-blue-600",
   },
   {
     icon: ShieldAlert,
-    title: "Arquitectura Cloud",
-    desc: "Infraestructura robusta y segura diseñada para escalar. Tu sistema nunca se caerá en los picos de demanda.",
+    title: "Plataformas SaaS y Cloud",
+    desc: "Arquitectura escalable en la nube, bases de datos y despliegue de soluciones digitales pensadas para alto rendimiento y crecimiento continuo.",
     color: "from-white/50 to-white/10",
   }
 ];
@@ -130,7 +130,7 @@ export function Expertise() {
   }, []);
 
   return (
-    <section ref={container} className="relative z-20 bg-[#020005] py-24 sm:py-32 px-6 lg:px-8 min-h-screen flex items-center">
+    <section ref={container} id="servicios" aria-label="Nuestros servicios de desarrollo" className="relative z-20 bg-[#020005] py-24 sm:py-32 px-6 lg:px-8 min-h-screen flex items-center">
       <div className="absolute inset-0 bg-mesh-gradient opacity-30 mix-blend-screen pointer-events-none" />
       
       <div className="relative z-10 mx-auto w-full max-w-7xl">
@@ -138,14 +138,14 @@ export function Expertise() {
           
           {/* Left Content */}
           <div className="w-full md:w-1/2 flex flex-col items-start gap-4">
-            <p className="text-sm font-semibold tracking-widest text-electric-blue uppercase">
+            <span className="text-sm font-semibold tracking-widest text-electric-blue uppercase block mb-4">
               Nuestra Expertise
-            </p>
+            </span>
             <h2 className="text-4xl font-semibold leading-tight text-white sm:text-6xl">
-              Soluciones diseñadas para <span className="text-transparent bg-clip-text bg-gradient-to-r from-karion-purple to-electric-blue">dominar</span> tu industria.
+              Tecnología diseñada para <span className="text-transparent bg-clip-text bg-gradient-to-r from-karion-purple to-electric-blue">ordenar, automatizar y escalar</span> tu empresa.
             </h2>
             <p className="mt-4 text-white/60 text-lg leading-relaxed max-w-md">
-              Avanza a tu propio ritmo. Cada uno de nuestros servicios está diseñado como una pieza de tu ecosistema.
+              Cada servicio está pensado para integrarse a tu negocio, mejorar tus procesos y ayudarte a crecer de forma ordenada.
             </p>
           </div>
 

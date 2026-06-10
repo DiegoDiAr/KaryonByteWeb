@@ -47,7 +47,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section ref={container} className="relative h-screen w-full overflow-hidden bg-deep-space flex items-center justify-center">
+    <section ref={container} id="inicio" aria-label="Presentación de KarionByte" className="relative h-screen w-full overflow-hidden bg-deep-space flex items-center justify-center">
       {/* Abstract Animated Background */}
       <div className="absolute inset-0 z-0 opacity-40">
         <motion.div
@@ -77,7 +77,7 @@ export function Hero() {
         >
           <Image
             src="/logo-karionbyte.png"
-            alt="KarionByte"
+            alt="KarionByte — Desarrollo de software y páginas web profesionales"
             width={500}
             height={500}
             priority
@@ -86,39 +86,20 @@ export function Hero() {
           />
         </motion.div>
         
-        <h1 ref={titleRef} className="text-balance text-[12vw] font-bold leading-[0.9] tracking-tighter sm:text-[8vw]">
-          <span className="block text-white">Construimos el</span>
-          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40">
-            Software que
+        <h1 ref={titleRef} className="font-sans text-balance text-5xl font-bold leading-[1.1] tracking-tighter sm:text-6xl md:text-7xl lg:text-[5.5rem]">
+          <span className="block text-white pb-2">Desarrollo de</span>
+          <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/40 pb-2">
+            software a medida
           </span>
-          <span className="block bg-gradient-to-r from-karion-purple to-electric-blue bg-clip-text text-transparent">
-            Opera tu Empresa.
+          <span className="block bg-gradient-to-r from-karion-purple to-electric-blue bg-clip-text text-transparent pb-4">
+            para escalar tu empresa.
           </span>
         </h1>
+        <p className="mx-auto mt-6 max-w-2xl text-lg text-white/70 sm:text-xl px-4">
+          En KarionByte creamos páginas web profesionales, sistemas empresariales y soluciones digitales modernas para negocios que buscan vender más, automatizar procesos y crecer con tecnología real.
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 1 }}
-          className="mt-16"
-        >
-          <Magnetic>
-            <button 
-              onClick={() => {
-                window.scrollTo({
-                  top: window.innerHeight,
-                  behavior: "smooth"
-                });
-              }}
-              className="group relative flex h-40 w-40 items-center justify-center rounded-full bg-white/5 border border-white/10 text-white backdrop-blur-md transition-colors hover:bg-white/10 hover:border-karion-purple/50"
-            >
-              <span className="relative z-10 flex flex-col items-center gap-2">
-                <span className="text-sm font-semibold tracking-widest uppercase">Empezar</span>
-                <span className="h-2 w-2 rounded-full bg-electric-blue shadow-glow-blue animate-pulse" />
-              </span>
-            </button>
-          </Magnetic>
-        </motion.div>
+
       </div>
     </section>
   );
