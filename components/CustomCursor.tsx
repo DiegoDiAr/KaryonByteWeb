@@ -1,14 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 
 export function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const [isEnabled, setIsEnabled] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const pointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
     const updateEnabledState = () => setIsEnabled(pointerQuery.matches);
 
@@ -49,9 +52,9 @@ export function CustomCursor() {
     };
   }, [isEnabled]);
 
-  if (!isEnabled) return null;
+  if (!mounted || !isEnabled) return null;
 
-  return (
+  return createPortal(
     <>
       <motion.div
         className="pointer-events-none fixed left-0 top-0 z-[9999] h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-electric-blue mix-blend-screen"
@@ -72,6 +75,7 @@ export function CustomCursor() {
         }}
         transition={{ type: "tween", ease: "backOut", duration: 0.3 }}
       />
-    </>
+    </>,
+    document.body
   );
 }

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -14,6 +14,16 @@ export function Hero() {
   const container = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const shouldReduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start start", "end start"],
+  });
+  const backgroundY = useSpring(useTransform(scrollYProgress, [0, 1], [0, 72]), {
+    stiffness: 90,
+    damping: 24,
+    mass: 0.35,
+  });
+  const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.06]);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -56,7 +66,10 @@ export function Hero() {
       aria-label="Presentación de KarionByte"
       className="relative flex min-h-[92svh] w-full items-center justify-center overflow-hidden bg-deep-space px-4 py-10 sm:min-h-[94svh] sm:px-6 sm:py-12 lg:h-screen lg:min-h-screen lg:px-0 lg:py-0"
     >
-      <div className="absolute inset-0 z-0 opacity-40">
+      <motion.div
+        style={shouldReduceMotion ? undefined : { y: backgroundY, scale: backgroundScale }}
+        className="absolute inset-0 z-0 opacity-40 will-change-transform"
+      >
         <motion.div
           animate={shouldReduceMotion ? undefined : {
             rotate: 360,
@@ -83,7 +96,7 @@ export function Hero() {
           transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
           className="absolute left-1/2 top-[52%] h-40 w-40 -translate-x-1/2 rounded-full border border-white/10 shadow-[0_0_48px_rgba(115,58,237,0.22)] sm:h-56 sm:w-56 lg:hidden"
         />
-      </div>
+      </motion.div>
 
       <motion.div
         className="relative z-10 mx-auto flex max-w-[90rem] flex-col items-center text-center"

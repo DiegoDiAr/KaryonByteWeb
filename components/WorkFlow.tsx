@@ -155,6 +155,15 @@ export function WorkFlow() {
                 }`}
               >
                 <div className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-electric-blue/55 to-transparent transition-opacity duration-300 ${isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`} />
+                {isActive && !shouldReduceMotion && (
+                  <motion.div
+                    aria-hidden="true"
+                    initial={{ x: "-140%", opacity: 0 }}
+                    animate={{ x: ["-140%", "240%"], opacity: [0, 0.9, 0] }}
+                    transition={{ duration: 3.6, repeat: Infinity, repeatDelay: 1.2, ease: "easeInOut" }}
+                    className="pointer-events-none absolute inset-y-0 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-electric-blue/5 to-transparent"
+                  />
+                )}
 
                 <motion.span
                   initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.78 }}

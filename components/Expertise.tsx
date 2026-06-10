@@ -40,6 +40,7 @@ export function Expertise() {
   const container = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
+  const [activeServiceIndex, setActiveServiceIndex] = useState(-1);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -52,6 +53,7 @@ export function Expertise() {
 
       const clearCardStylesBelowDesktop = () => {
         if (window.innerWidth >= 1280 || !cardsRef.current) return;
+        setActiveServiceIndex(-1);
         const cards = Array.from(cardsRef.current.children) as HTMLElement[];
         cards.forEach((card) => gsap.set(card, { clearProps: "all" }));
       };
@@ -65,6 +67,7 @@ export function Expertise() {
         const cards = Array.from(cardsRef.current.children) as HTMLElement[];
         if (!cards.length) return;
 
+        setActiveServiceIndex(0);
         gsap.set(cards, { clearProps: "all" });
 
         cards.forEach((card, i) => {
@@ -74,8 +77,6 @@ export function Expertise() {
             y: i * 35,
             opacity: i === 0 ? 1 : 0.6 - i * 0.2,
             transformOrigin: "center center",
-            boxShadow: i === 0 ? "0 0 60px rgba(115,58,237,0.15)" : "none",
-            borderColor: i === 0 ? "rgba(115,58,237,0.6)" : "rgba(255,255,255,0.1)",
           });
         });
 
@@ -87,6 +88,10 @@ export function Expertise() {
             pin: true,
             scrub: 1,
             anticipatePin: 1,
+            onUpdate: (self) => {
+              const nextIndex = Math.min(cards.length - 1, Math.round(self.progress * (cards.length - 1)));
+              setActiveServiceIndex((current) => current === nextIndex ? current : nextIndex);
+            },
           }
         });
 
@@ -110,8 +115,6 @@ export function Expertise() {
               scale: newIndex === 0 ? 1.15 : 0.95 - newIndex * 0.05,
               y: newIndex * 35,
               opacity: newIndex === 0 ? 1 : 0.6 - newIndex * 0.2,
-              boxShadow: newIndex === 0 ? "0 0 60px rgba(115,58,237,0.15)" : "none",
-              borderColor: newIndex === 0 ? "rgba(115,58,237,0.6)" : "rgba(255,255,255,0.1)",
               duration: 1,
               ease: "power2.inOut",
             }, i);
@@ -183,16 +186,12 @@ export function Expertise() {
           <div className="relative w-full xl:h-[450px] xl:w-1/2">
             <div ref={cardsRef} className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 xl:relative xl:block xl:h-full">
               {services.map((service, i) => (
-                <motion.div
+                <div
                   key={i}
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: 34, scale: 0.97 }}
-                  whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.62, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
                   className="rounded-[2rem] md:last:col-span-2 xl:absolute xl:left-0 xl:top-0 xl:w-full xl:last:col-span-1"
                 >
-                  <ServiceCard {...service} />
-                </motion.div>
+                  <ServiceCard {...service} index={i} isActive={activeServiceIndex === i} />
+                </div>
               ))}
             </div>
           </div>
@@ -202,11 +201,13 @@ export function Expertise() {
   );
 }
 
-function ServiceCard({ icon: Icon, title, desc, color }: {
+function ServiceCard({ icon: Icon, title, desc, color, index, isActive }: {
   icon: LucideIcon;
   title: string;
   desc: string;
   color: string;
+  index: number;
+  isActive: boolean;
 }) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const cardRef = useRef<HTMLDivElement>(null);
@@ -225,12 +226,29 @@ function ServiceCard({ icon: Icon, title, desc, color }: {
     <motion.div
       ref={cardRef}
       onMouseMove={handleMouseMove}
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 34, scale: 0.97 }}
+      whileInView={shouldReduceMotion ? undefined : {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        transition: { duration: 0.62, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] },
+      }}
+      viewport={{ once: true, amount: 0.25 }}
       whileHover={shouldReduceMotion ? undefined : { y: -6, scale: 1.01 }}
       whileTap={shouldReduceMotion ? undefined : { scale: 0.985 }}
       transition={{ type: "spring", stiffness: 260, damping: 22 }}
-      className="group relative h-full overflow-hidden rounded-[2rem] border border-white/10 bg-[#080312] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.22)] transition-colors duration-300 will-change-transform hover:border-karion-purple/60 hover:shadow-[0_22px_80px_rgba(115,58,237,0.16)] active:border-electric-blue/50 sm:p-8 lg:p-10"
+      className={`group relative h-full overflow-hidden rounded-[2rem] border bg-[#080312] p-6 transition-[border-color,box-shadow] duration-300 will-change-transform hover:border-karion-purple/60 hover:shadow-[0_22px_80px_rgba(115,58,237,0.16)] active:border-electric-blue/50 sm:p-8 lg:p-10 ${
+        isActive
+          ? "border-karion-purple/65 shadow-[0_22px_80px_rgba(115,58,237,0.18)]"
+          : "border-white/10 shadow-[0_18px_60px_rgba(0,0,0,0.22)]"
+      }`}
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-electric-blue/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-active:opacity-100" />
+      <motion.div
+        aria-hidden="true"
+        animate={isActive && !shouldReduceMotion ? { opacity: [0.5, 1, 0.5], scaleX: [0.82, 1, 0.82] } : undefined}
+        transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+        className={`pointer-events-none absolute inset-x-0 top-0 h-px origin-center bg-gradient-to-r from-transparent via-electric-blue/60 to-transparent transition-opacity duration-300 ${isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100 group-active:opacity-100"}`}
+      />
       <div
         className="pointer-events-none absolute -inset-px rounded-[2rem] opacity-0 transition duration-300 group-hover:opacity-100"
         style={{

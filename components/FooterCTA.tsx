@@ -1,57 +1,17 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { Magnetic } from "./Magnetic";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
 export function FooterCTA() {
-  const container = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
-
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) return;
-
-    const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
-
-      mm.add("(min-width: 768px)", () => {
-        gsap.from(".footer-content", {
-          y: -150,
-          opacity: 0,
-          scrollTrigger: {
-            trigger: container.current,
-            start: "top bottom",
-            end: "bottom bottom",
-            scrub: 1,
-          }
-        });
-      });
-
-      mm.add("(max-width: 767px)", () => {
-        gsap.from(".footer-content", {
-          y: 40,
-          opacity: 0,
-          scrollTrigger: {
-            trigger: container.current,
-            start: "top 80%",
-          }
-        });
-      });
-    }, container);
-
-    return () => ctx.revert();
-  }, []);
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 24, filter: "blur(7px)" },
+    show: { opacity: 1, y: 0, filter: "blur(0px)" },
+  };
 
   return (
     <footer
-      ref={container}
       id="contacto"
       aria-label="Contacto y llamada a la acción"
       className="relative z-0 flex min-h-[610px] w-full flex-col justify-end overflow-hidden bg-[#020005] sm:min-h-[68vh] lg:min-h-[72vh]"
@@ -71,18 +31,24 @@ export function FooterCTA() {
         className="pointer-events-none absolute bottom-[-10vh] left-1/2 h-[28vh] w-[70vw] -translate-x-1/2 rounded-full bg-electric-blue/20 blur-[80px] will-change-transform sm:h-[36vh] sm:w-[40vw] sm:blur-[100px]"
       />
 
-      <div className="footer-content relative z-10 flex h-full flex-col items-center justify-center px-5 py-14 text-center sm:px-6 sm:py-16 lg:py-20">
-        <p className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-electric-blue sm:mb-5 sm:text-sm sm:tracking-[0.3em]">
+      <motion.div
+        initial={shouldReduceMotion ? false : "hidden"}
+        whileInView={shouldReduceMotion ? undefined : "show"}
+        viewport={{ once: true, amount: 0.35 }}
+        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.13, delayChildren: 0.08 } } }}
+        className="relative z-10 flex h-full flex-col items-center justify-center px-5 py-14 text-center sm:px-6 sm:py-16 lg:py-20"
+      >
+        <motion.p variants={itemVariants} transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }} className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-electric-blue sm:mb-5 sm:text-sm sm:tracking-[0.3em]">
           El futuro de tu negocio
-        </p>
-        <h2 className="text-[clamp(3.25rem,17vw,8rem)] font-bold leading-none tracking-normal text-white sm:text-[10vw]">
+        </motion.p>
+        <motion.h2 variants={itemVariants} transition={{ duration: 0.76, ease: [0.16, 1, 0.3, 1] }} className="text-[clamp(3.25rem,17vw,8rem)] font-bold leading-none tracking-normal text-white sm:text-[10vw]">
           Iniciemos.
-        </h2>
-        <p className="mb-8 mt-4 max-w-xl text-base leading-7 text-white/60 sm:mb-10 sm:mt-5 sm:text-xl sm:leading-8">
+        </motion.h2>
+        <motion.p variants={itemVariants} transition={{ duration: 0.68, ease: [0.22, 1, 0.36, 1] }} className="mb-8 mt-4 max-w-xl text-base leading-7 text-white/60 sm:mb-10 sm:mt-5 sm:text-xl sm:leading-8">
           Lleva tu negocio al siguiente nivel con una página web profesional, software a medida o automatización de procesos.
-        </p>
+        </motion.p>
 
-        <div className="mt-1 flex w-full justify-center sm:mt-2 sm:w-auto">
+        <motion.div variants={itemVariants} transition={{ duration: 0.68, ease: [0.22, 1, 0.36, 1] }} className="mt-1 flex w-full justify-center sm:mt-2 sm:w-auto">
           <Magnetic>
             <motion.a
               href="https://wa.me/51924206297?text=Hola,%20quiero%20cotizar%20con%20ustedes"
@@ -106,8 +72,8 @@ export function FooterCTA() {
               <span className="relative z-10">Cotizar mi proyecto</span>
             </motion.a>
           </Magnetic>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       <div className="relative z-10 flex flex-col items-center justify-center gap-2 border-t border-white/10 px-5 py-4 text-center text-sm text-white/50 sm:flex-row sm:justify-between sm:px-8 sm:py-5">
         <p>© {new Date().getFullYear()} KarionByte.</p>
