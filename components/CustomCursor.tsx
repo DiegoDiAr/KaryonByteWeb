@@ -6,8 +6,21 @@ import { motion } from "framer-motion";
 export function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const [isEnabled, setIsEnabled] = useState(false);
 
   useEffect(() => {
+    const pointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const updateEnabledState = () => setIsEnabled(pointerQuery.matches);
+
+    updateEnabledState();
+    pointerQuery.addEventListener("change", updateEnabledState);
+
+    return () => pointerQuery.removeEventListener("change", updateEnabledState);
+  }, []);
+
+  useEffect(() => {
+    if (!isEnabled) return;
+
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -34,12 +47,9 @@ export function CustomCursor() {
       window.removeEventListener("mousemove", updateMousePosition);
       window.removeEventListener("mouseover", handleMouseOver);
     };
-  }, []);
+  }, [isEnabled]);
 
-  // Only render on desktop to avoid issues on touch devices
-  if (typeof window !== "undefined" && window.matchMedia("(hover: none)").matches) {
-    return null;
-  }
+  if (!isEnabled) return null;
 
   return (
     <>

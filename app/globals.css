@@ -12,10 +12,13 @@
 }
 
 html {
+  width: 100%;
+  overflow-x: hidden;
   background: #020005;
 }
 
 body {
+  width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
   background-color: #020005;
