@@ -84,8 +84,9 @@ export const metadata: Metadata = {
     creator: "@karionbyte",
   },
   icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: "/logo-karyon.png",
+    shortcut: "/logo-karyon.png",
+    apple: "/logo-karyon.png",
   },
   category: "technology",
 };
