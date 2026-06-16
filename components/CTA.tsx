@@ -81,13 +81,13 @@ export function CTA() {
             aria-hidden="true"
             animate={{ x: ["-45%", "45%", "-45%"] }}
             transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-karion-purple to-transparent"
+            className="absolute left-1/2 top-0 h-px w-2/3 -translate-x-1/2 bg-gradient-to-r from-transparent via-karyon-purple to-transparent"
           />
           <div ref={contentRef} className="relative mx-auto max-w-3xl">
             <div className="mx-auto mb-8 flex justify-center pointer-events-none">
               <Image
-                src="/logo-karionbyte.png"
-                alt="KarionByte"
+                src="/logo-karyonbyte.png"
+                alt="KaryonByte"
                 width={500}
                 height={500}
                 unoptimized
@@ -95,7 +95,7 @@ export function CTA() {
               />
             </div>
             <div className="mx-auto mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-sm text-white/72">
-              <Sparkles className="h-4 w-4 text-karion-purple" />
+              <Sparkles className="h-4 w-4 text-karyon-purple" />
               Construyamos algo real
             </div>
             <h2 className="text-balance text-4xl font-semibold leading-tight sm:text-5xl">
@@ -106,7 +106,7 @@ export function CTA() {
               a medida.
             </p>
             <div className="mt-9 flex justify-center">
-              <a href="mailto:contacto@karionbyte.com" className="premium-button group">
+              <a href="mailto:contacto@karyonbyte.com" className="premium-button group">
                 Solicitar cotización
                 <ArrowRight className="h-5 w-5 transition group-hover:translate-x-1" />
               </a>

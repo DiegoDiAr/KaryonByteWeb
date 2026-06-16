@@ -22,7 +22,7 @@ export function FooterCTA() {
         aria-hidden="true"
         animate={shouldReduceMotion ? undefined : { opacity: [0.65, 1, 0.65], scale: [0.98, 1.035, 0.98] }}
         transition={{ duration: 7.5, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute bottom-0 left-1/2 h-[38vh] w-[90vw] -translate-x-1/2 rounded-full bg-karion-purple/30 blur-[90px] will-change-transform sm:h-[46vh] sm:w-[80vw] sm:blur-[120px]"
+        className="pointer-events-none absolute bottom-0 left-1/2 h-[38vh] w-[90vw] -translate-x-1/2 rounded-full bg-karyon-purple/30 blur-[90px] will-change-transform sm:h-[46vh] sm:w-[80vw] sm:blur-[120px]"
       />
       <motion.div
         aria-hidden="true"
@@ -58,7 +58,7 @@ export function FooterCTA() {
               whileTap={shouldReduceMotion ? undefined : { scale: 0.965 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className="group relative inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-white px-6 py-4 text-base font-bold text-[#020005] shadow-[0_18px_60px_rgba(255,255,255,0.12)] transition-shadow duration-300 hover:shadow-[0_20px_70px_rgba(255,255,255,0.24)] active:shadow-[0_12px_42px_rgba(0,240,255,0.18)] sm:w-auto sm:px-10 sm:py-5 sm:text-lg"
-              aria-label="Contactar a KarionByte por WhatsApp para cotizar desarrollo de software y páginas web"
+              aria-label="Contactar a KaryonByte por WhatsApp para cotizar desarrollo de software y páginas web"
             >
               <motion.span
                 aria-hidden="true"
@@ -76,7 +76,7 @@ export function FooterCTA() {
       </motion.div>
 
       <div className="relative z-10 flex flex-col items-center justify-center gap-2 border-t border-white/10 px-5 py-4 text-center text-sm text-white/50 sm:flex-row sm:justify-between sm:px-8 sm:py-5">
-        <p>© {new Date().getFullYear()} KarionByte.</p>
+        <p>© {new Date().getFullYear()} KaryonByte.</p>
         <p>Ecosistemas Digitales</p>
       </div>
     </footer>

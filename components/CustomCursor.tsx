@@ -11,6 +11,7 @@ export function CustomCursor() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     const pointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
     const updateEnabledState = () => setIsEnabled(pointerQuery.matches);

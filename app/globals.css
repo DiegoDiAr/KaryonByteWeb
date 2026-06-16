@@ -134,6 +134,39 @@ body {
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.62);
   }
+
+  .border-beam-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: inherit;
+  }
+
+  .border-beam-container::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg at 50% 50%, transparent 0%, transparent 80%, rgba(115, 58, 237, 0.8) 100%);
+    animation: border-beam-spin 4s linear infinite;
+    z-index: 0;
+  }
+
+  .border-beam-container::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    background: inherit;
+    border-radius: inherit;
+    z-index: 0;
+  }
+}
+
+@keyframes border-beam-spin {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

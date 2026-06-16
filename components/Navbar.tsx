@@ -33,10 +33,10 @@ export function Navbar() {
       className="fixed left-0 right-0 top-0 z-50 border-b backdrop-blur-2xl"
     >
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
-        <a href="#inicio" aria-label="KarionByte inicio" className="group flex items-center bg-white rounded-xl px-3 py-1.5 transition-transform hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+        <a href="#inicio" aria-label="KaryonByte inicio" className="group flex items-center bg-white rounded-xl px-3 py-1.5 transition-transform hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
           <Image
-            src="/logo-karionbyte.png"
-            alt="KarionByte"
+            src="/logo-karyonbyte.png"
+            alt="KaryonByte"
             width={230}
             height={70}
             priority
@@ -58,7 +58,7 @@ export function Navbar() {
 
         <a
           href="#contacto"
-          className="group hidden items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:border-karion-purple/70 hover:bg-karion-purple/20 lg:flex"
+          className="group hidden items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-5 py-3 text-sm font-semibold text-white shadow-glow transition hover:border-karyon-purple/70 hover:bg-karyon-purple/20 lg:flex"
         >
           Solicitar cotización
           <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
@@ -94,7 +94,7 @@ export function Navbar() {
           <a
             href="#contacto"
             onClick={() => setIsOpen(false)}
-            className="mt-2 flex items-center justify-center gap-2 rounded-full bg-karion-purple px-5 py-3 text-sm font-semibold text-white shadow-glow"
+            className="mt-2 flex items-center justify-center gap-2 rounded-full bg-karyon-purple px-5 py-3 text-sm font-semibold text-white shadow-glow"
           >
             Solicitar cotización
             <ArrowRight className="h-4 w-4" />

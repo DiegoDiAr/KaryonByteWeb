@@ -20,7 +20,7 @@ const services: Array<{
     icon: Layout,
     title: "Páginas Web Profesionales",
     desc: "Desarrollo de páginas web corporativas, landing pages y aplicaciones web modernas, rápidas y optimizadas para convertir visitantes en clientes.",
-    color: "from-karion-purple to-neon-purple",
+    color: "from-karyon-purple to-neon-purple",
   },
   {
     icon: Server,
@@ -172,7 +172,7 @@ export function Expertise() {
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="text-[clamp(2.15rem,8vw,3.75rem)] font-semibold leading-tight tracking-normal text-white"
             >
-              Tecnología diseñada para <span className="bg-gradient-to-r from-karion-purple to-electric-blue bg-clip-text text-transparent">ordenar, automatizar y escalar</span> tu empresa.
+              Tecnología diseñada para <span className="bg-gradient-to-r from-karyon-purple to-electric-blue bg-clip-text text-transparent">ordenar, automatizar y escalar</span> tu empresa.
             </motion.h2>
             <motion.p
               variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }}
@@ -237,9 +237,9 @@ function ServiceCard({ icon: Icon, title, desc, color, index, isActive }: {
       whileHover={shouldReduceMotion ? undefined : { y: -6, scale: 1.01 }}
       whileTap={shouldReduceMotion ? undefined : { scale: 0.985 }}
       transition={{ type: "spring", stiffness: 260, damping: 22 }}
-      className={`group relative h-full overflow-hidden rounded-[2rem] border bg-[#080312] p-6 transition-[border-color,box-shadow] duration-300 will-change-transform hover:border-karion-purple/60 hover:shadow-[0_22px_80px_rgba(115,58,237,0.16)] active:border-electric-blue/50 sm:p-8 lg:p-10 ${
+      className={`group relative h-full overflow-hidden rounded-[2rem] border bg-[#080312] p-6 transition-[border-color,box-shadow] duration-300 will-change-transform hover:border-karyon-purple/60 hover:shadow-[0_22px_80px_rgba(115,58,237,0.16)] active:border-electric-blue/50 sm:p-8 lg:p-10 ${
         isActive
-          ? "border-karion-purple/65 shadow-[0_22px_80px_rgba(115,58,237,0.18)]"
+          ? "border-karyon-purple/65 shadow-[0_22px_80px_rgba(115,58,237,0.18)]"
           : "border-white/10 shadow-[0_18px_60px_rgba(0,0,0,0.22)]"
       }`}
     >

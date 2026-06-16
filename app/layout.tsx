@@ -9,7 +9,7 @@ const inter = Inter({
   display: "swap"
 });
 
-const SITE_URL = "https://karionbyte.com";
+const SITE_URL = "https://karyonbyte.com";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -20,11 +20,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "KarionByte | Desarrollo de Software y Páginas Web a Medida",
-    template: "%s | KarionByte",
+    default: "KaryonByte | Desarrollo de Software y Páginas Web a Medida",
+    template: "%s | KaryonByte",
   },
   description:
-    "Somos KarionByte, una startup tecnológica que diseña y desarrolla páginas web profesionales, sistemas empresariales, software a medida y soluciones digitales para negocios que quieren crecer, automatizar procesos y escalar con tecnología.",
+    "Somos KaryonByte, una startup tecnológica que diseña y desarrolla páginas web profesionales, sistemas empresariales, software a medida y soluciones digitales para negocios que quieren crecer, automatizar procesos y escalar con tecnología.",
   keywords: [
     "desarrollo de software",
     "páginas web profesionales",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     "automatización de procesos",
     "desarrollo web para empresas",
     "startup tecnológica",
-    "KarionByte",
+    "KaryonByte",
     "sistemas empresariales",
     "aplicaciones web",
     "desarrollo web Perú",
@@ -42,9 +42,9 @@ export const metadata: Metadata = {
     "crear página web",
     "software para negocios",
   ],
-  authors: [{ name: "KarionByte", url: SITE_URL }],
-  creator: "KarionByte",
-  publisher: "KarionByte",
+  authors: [{ name: "KaryonByte", url: SITE_URL }],
+  creator: "KaryonByte",
+  publisher: "KaryonByte",
   robots: {
     index: true,
     follow: true,
@@ -63,25 +63,25 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_PE",
     url: SITE_URL,
-    siteName: "KarionByte",
-    title: "KarionByte | Desarrollo de Software y Páginas Web a Medida",
-    description: "KarionByte crea páginas web, software a medida y soluciones digitales para empresas que buscan crecer, automatizar procesos y transformar sus ideas en tecnología real.",
+    siteName: "KaryonByte",
+    title: "KaryonByte | Desarrollo de Software y Páginas Web a Medida",
+    description: "KaryonByte crea páginas web, software a medida y soluciones digitales para empresas que buscan crecer, automatizar procesos y transformar sus ideas en tecnología real.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "KarionByte — Desarrollo de software y páginas web profesionales",
+        alt: "KaryonByte — Desarrollo de software y páginas web profesionales",
         type: "image/png",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "KarionByte | Software y Páginas Web a Medida",
-    description: "KarionByte crea páginas web, software a medida y soluciones digitales para empresas que buscan crecer, automatizar procesos y transformar sus ideas en tecnología real.",
+    title: "KaryonByte | Software y Páginas Web a Medida",
+    description: "KaryonByte crea páginas web, software a medida y soluciones digitales para empresas que buscan crecer, automatizar procesos y transformar sus ideas en tecnología real.",
     images: ["/og-image.png"],
-    creator: "@karionbyte",
+    creator: "@karyonbyte",
   },
   icons: {
     icon: "/logo-karyon.png",
@@ -98,11 +98,11 @@ const jsonLd = {
     {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
-      name: "KarionByte",
+      name: "KaryonByte",
       url: SITE_URL,
       logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/logo-karionbyte.png`,
+        url: `${SITE_URL}/logo-karyonbyte.png`,
       },
       description: "Startup tecnológica especializada en desarrollo de software, páginas web profesionales, sistemas empresariales y soluciones digitales a medida.",
       contactPoint: {
@@ -116,9 +116,9 @@ const jsonLd = {
     {
       "@type": "LocalBusiness",
       "@id": `${SITE_URL}/#localbusiness`,
-      name: "KarionByte",
+      name: "KaryonByte",
       url: SITE_URL,
-      logo: `${SITE_URL}/logo-karionbyte.png`,
+      logo: `${SITE_URL}/logo-karyonbyte.png`,
       image: `${SITE_URL}/og-image.png`,
       description: "Agencia de desarrollo web y creación de software a medida para negocios.",
       areaServed: [
@@ -131,7 +131,7 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
       url: SITE_URL,
-      name: "KarionByte",
+      name: "KaryonByte",
       publisher: { "@id": `${SITE_URL}/#organization` },
       inLanguage: "es",
     },
@@ -139,7 +139,7 @@ const jsonLd = {
       "@type": "WebPage",
       "@id": `${SITE_URL}/#webpage`,
       url: SITE_URL,
-      name: "KarionByte | Desarrollo de Software y Páginas Web a Medida",
+      name: "KaryonByte | Desarrollo de Software y Páginas Web a Medida",
       description: "Diseñamos y desarrollamos páginas web, sistemas empresariales, software a medida y soluciones digitales para negocios que quieren crecer con tecnología.",
       isPartOf: { "@id": `${SITE_URL}/#website` },
       about: { "@id": `${SITE_URL}/#organization` },
@@ -202,7 +202,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.variable} bg-abyss text-white antialiased`}>
+      <body className={`${inter.className} bg-abyss text-white antialiased`}>
         <SmoothScroll>
           {children}
         </SmoothScroll>
