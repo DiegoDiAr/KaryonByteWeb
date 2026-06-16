@@ -25,6 +25,15 @@ export function Hero() {
   });
   const backgroundScale = useTransform(scrollYProgress, [0, 1], [1, 1.06]);
 
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.pushState(null, "", `#${targetId}`);
+    }
+  };
+
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
@@ -161,12 +170,14 @@ export function Hero() {
         >
           <a
             href="#contacto"
+            onClick={(e) => handleScroll(e, "contacto")}
             className="border-beam-container group flex w-full items-center justify-center gap-2 rounded-full bg-deep-space px-8 py-3.5 font-medium text-white shadow-[0_0_20px_rgba(115,58,237,0.3)] backdrop-blur-md transition-all hover:scale-105 sm:w-auto"
           >
             <span className="relative z-10 flex items-center gap-2">Cotizar mi proyecto</span>
           </a>
           <a
             href="#soluciones"
+            onClick={(e) => handleScroll(e, "soluciones")}
             className="group flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 py-3.5 font-medium text-white backdrop-blur-md transition-all hover:bg-white/10 sm:w-auto"
           >
             <span className="relative z-10">Ver soluciones</span>

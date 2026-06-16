@@ -1,21 +1,28 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Atom, Zap, FileCode2, Palette, Server, Code2, Database, Webhook, Triangle, Github, BrainCircuit } from "lucide-react";
+import { Atom, Zap, FileCode2, Palette, Server, Code2, Database, Webhook, Triangle, Github, BrainCircuit, CodeXml, Layers, Braces, Coffee } from "lucide-react";
 
 const technologies = [
-  { name: "Next.js", icon: Zap },
-  { name: "React", icon: Atom },
+  { name: "HTML", icon: CodeXml },
+  { name: "CSS", icon: Layers },
+  { name: "JavaScript", icon: Braces },
   { name: "TypeScript", icon: FileCode2 },
+  { name: "React", icon: Atom },
+  { name: "Next.js", icon: Zap },
   { name: "Tailwind CSS", icon: Palette },
   { name: "Node.js", icon: Server },
   { name: "Python", icon: Code2 },
+  { name: "Java", icon: Coffee },
   { name: "Bases de Datos", icon: Database },
   { name: "APIs", icon: Webhook },
   { name: "Vercel", icon: Triangle },
   { name: "GitHub", icon: Github },
   { name: "Inteligencia Artificial", icon: BrainCircuit },
 ];
+
+const row1 = technologies.slice(0, 8);
+const row2 = technologies.slice(8);
 
 export function TechStack() {
   const containerVariants = {
@@ -59,26 +66,40 @@ export function TechStack() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-12">
-          {technologies.map((tech, i) => {
-            const Icon = tech.icon;
-            return (
-              <motion.div
-                variants={itemVariants}
-                key={tech.name}
-                className={`group relative flex flex-col items-center justify-center gap-3 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-transform duration-300 hover:-translate-y-1 hover:bg-white/[0.04] md:col-span-1 lg:col-span-2 ${
-                  i === 6 ? "lg:col-start-2" : ""
-                }`}
-              >
-                <div className="absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-karyon-purple/40 blur-[30px] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <Icon className="relative z-10 h-8 w-8 text-white/50 transition-all duration-300 group-hover:scale-110 group-hover:text-white group-hover:drop-shadow-[0_0_12px_rgba(115,58,237,0.8)]" />
-                <span className="relative z-10 text-center text-sm font-medium text-white/60 transition-colors duration-300 group-hover:text-white">
-                  {tech.name}
-                </span>
-              </motion.div>
-            );
-          })}
-        </div>
+        <motion.div variants={itemVariants} className="relative mt-16 w-full overflow-hidden py-6">
+          <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-16 sm:w-32 bg-gradient-to-r from-deep-space to-transparent" />
+          <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-16 sm:w-32 bg-gradient-to-l from-deep-space to-transparent" />
+
+          <div className="flex flex-col gap-6">
+            <div className="flex w-max motion-safe:animate-marquee-left motion-reduce:animate-none gap-6">
+              {[...row1, ...row1].map((tech, i) => {
+                const Icon = tech.icon;
+                return (
+                  <div key={`r1-${i}`} className="group relative flex w-36 sm:w-48 flex-col items-center justify-center gap-3 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-6 backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/50 hover:bg-white/[0.04] hover:shadow-[0_0_20px_rgba(0,240,255,0.2)] hover:-translate-y-0.5 cursor-default">
+                    <Icon className="relative z-10 h-8 w-8 sm:h-10 sm:w-10 text-white/50 transition-all duration-300 group-hover:scale-110 group-hover:text-cyan-400 group-hover:drop-shadow-[0_0_12px_rgba(0,240,255,0.8)]" />
+                    <span className="relative z-10 text-center text-xs sm:text-sm font-medium text-white/60 transition-colors duration-300 group-hover:text-white">
+                      {tech.name}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="flex w-max motion-safe:animate-marquee-right motion-reduce:animate-none gap-6">
+              {[...row2, ...row2].map((tech, i) => {
+                const Icon = tech.icon;
+                return (
+                  <div key={`r2-${i}`} className="group relative flex w-36 sm:w-48 flex-col items-center justify-center gap-3 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-5 sm:p-6 backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/50 hover:bg-white/[0.04] hover:shadow-[0_0_20px_rgba(0,240,255,0.2)] hover:-translate-y-0.5 cursor-default">
+                    <Icon className="relative z-10 h-8 w-8 sm:h-10 sm:w-10 text-white/50 transition-all duration-300 group-hover:scale-110 group-hover:text-cyan-400 group-hover:drop-shadow-[0_0_12px_rgba(0,240,255,0.8)]" />
+                    <span className="relative z-10 text-center text-xs sm:text-sm font-medium text-white/60 transition-colors duration-300 group-hover:text-white">
+                      {tech.name}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </motion.div>
       </motion.div>
     </section>
   );

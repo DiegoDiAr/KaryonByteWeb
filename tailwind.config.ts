@@ -30,10 +30,20 @@ const config: Config = {
         shimmer: {
           "0%": { transform: "translateX(-120%)" },
           "100%": { transform: "translateX(120%)" }
+        },
+        "marquee-left": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" }
+        },
+        "marquee-right": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" }
         }
       },
       animation: {
-        shimmer: "shimmer 4.8s ease-in-out infinite"
+        shimmer: "shimmer 4.8s ease-in-out infinite",
+        "marquee-left": "marquee-left 40s linear infinite",
+        "marquee-right": "marquee-right 40s linear infinite"
       }
     }
   },
