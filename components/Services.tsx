@@ -137,7 +137,7 @@ export function Services() {
         </div>
 
         <div ref={cardsRef} className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, index) => (
+          {services.map((service) => (
             <motion.article
               key={service.title}
               whileHover={{ y: -10, rotateX: 3, rotateY: -3, scale: 1.015 }}

@@ -80,7 +80,7 @@ export function Projects() {
         </div>
 
         <div ref={cardsRef} className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <motion.article
               key={project.title}
               whileHover={{ y: -8 }}

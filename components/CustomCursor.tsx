@@ -8,10 +8,8 @@ export function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const [isEnabled, setIsEnabled] = useState(false);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const pointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
     const updateEnabledState = () => setIsEnabled(pointerQuery.matches);
 
@@ -52,7 +50,7 @@ export function CustomCursor() {
     };
   }, [isEnabled]);
 
-  if (!mounted || !isEnabled) return null;
+  if (!isEnabled || typeof document === "undefined") return null;
 
   return createPortal(
     <>
