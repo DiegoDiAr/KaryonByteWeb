@@ -144,11 +144,12 @@ body {
   .border-beam-container::before {
     content: "";
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(from 0deg at 50% 50%, transparent 0%, transparent 80%, rgba(115, 58, 237, 0.8) 100%);
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    aspect-ratio: 1 / 1;
+    transform: translate(-50%, -50%) rotate(0deg);
+    background: conic-gradient(from 0deg at 50% 50%, transparent 0%, transparent 60%, rgba(115, 58, 237, 0.1) 75%, rgba(115, 58, 237, 0.8) 95%, transparent 100%);
     animation: border-beam-spin 4s linear infinite;
     z-index: 0;
   }
@@ -164,8 +165,11 @@ body {
 }
 
 @keyframes border-beam-spin {
-  100% {
-    transform: rotate(360deg);
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 

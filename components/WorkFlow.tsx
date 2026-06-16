@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { SectionReveal } from "@/components/SectionReveal";
 
 const steps = [
   { num: "01", title: "Descubrimiento", desc: "Analizamos tu negocio, tus objetivos y las funcionalidades que necesita tu plataforma." },
@@ -11,31 +10,54 @@ const steps = [
   { num: "05", title: "Despliegue y soporte", desc: "Publicamos tu proyecto y te acompañamos con monitoreo y soporte continuo." },
 ];
 
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0.01, y: 18, scale: 0.985 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
 export function WorkFlow() {
   return (
-    <SectionReveal
+    <section
       id="proceso"
       className="relative z-10 bg-[#020005] py-16 sm:py-20 lg:py-28"
     >
-      <div className="mx-auto flex max-w-7xl flex-col px-5 sm:px-6 lg:px-8">
-        <div className="mb-12 max-w-3xl sm:mb-16">
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.15, margin: "0px 0px -80px 0px" }}
+        variants={containerVariants}
+        className="mx-auto flex max-w-7xl flex-col px-5 sm:px-6 lg:px-8"
+      >
+        <motion.div variants={itemVariants} className="mb-12 max-w-3xl sm:mb-16">
           <h2 className="text-[clamp(2.5rem,6vw,3.5rem)] font-bold leading-tight tracking-normal text-white">
             Cómo trabajamos
           </h2>
           <p className="mt-4 text-lg leading-8 text-white/60">
             Un proceso estructurado para garantizar resultados sólidos desde la primera reunión hasta el lanzamiento.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-6">
           {steps.map((step, index) => (
             <motion.div
+              variants={itemVariants}
               key={step.num}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`group relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-white/10 bg-[#080312] p-8 transition-all hover:border-karyon-purple/50 hover:bg-white/[0.02] md:col-span-1 ${
+              className={`group relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-white/10 bg-[#080312] p-8 transition-colors duration-300 hover:border-karyon-purple/50 hover:bg-white/[0.02] md:col-span-1 ${
                 index === 3 ? "lg:col-start-2 lg:col-span-2" : "lg:col-span-2"
               }`}
             >
@@ -51,7 +73,7 @@ export function WorkFlow() {
             </motion.div>
           ))}
         </div>
-      </div>
-    </SectionReveal>
+      </motion.div>
+    </section>
   );
 }

@@ -56,8 +56,13 @@ export function OwnProduct() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative w-full rounded-2xl border border-white/10 bg-[#0A0514] shadow-[0_0_50px_rgba(115,58,237,0.15)] overflow-hidden"
             >
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                style={{ willChange: "transform" }}
+                className="relative w-full rounded-2xl border border-white/10 bg-[#0A0514] shadow-[0_0_50px_rgba(115,58,237,0.15)] overflow-hidden"
+              >
               {/* macOS Header */}
               <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.02] px-4 py-3">
                 <div className="h-3 w-3 rounded-full bg-[#FF5F56] shadow-[0_0_5px_rgba(255,95,86,0.5)]"></div>
@@ -118,6 +123,7 @@ export function OwnProduct() {
               <div className="absolute -inset-0.5 -z-10 rounded-[1.1rem] bg-gradient-to-br from-karyon-purple/30 to-electric-blue/30 opacity-20 blur-xl"></div>
               </div>
             </motion.div>
+          </motion.div>
           </div>
         </div>
       </div>

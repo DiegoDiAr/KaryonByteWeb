@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ClipboardCheck, Lightbulb, Rocket, TestTube2 } from "lucide-react";
-import { SectionReveal } from "@/components/SectionReveal";
+import { motion } from "framer-motion";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -38,7 +38,6 @@ const steps = [
 ];
 
 export function Process() {
-  const headerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
   const sectionWrapperRef = useRef<HTMLDivElement>(null);
 
@@ -47,21 +46,6 @@ export function Process() {
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
-      // Header stagger
-      if (headerRef.current) {
-        gsap.from(headerRef.current.children, {
-          opacity: 0,
-          y: 40,
-          stagger: 0.15,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: "top 85%",
-          },
-        });
-      }
-
       // Horizontal scroll on Desktop
       const mm = gsap.matchMedia();
       mm.add("(min-width: 1024px)", () => {
@@ -83,60 +67,75 @@ export function Process() {
           });
         }
       });
-
-      // Standard vertical fade on mobile
-      mm.add("(max-width: 1023px)", () => {
-        if (cardsRef.current) {
-          gsap.from(cardsRef.current.children, {
-            opacity: 0,
-            y: 40,
-            stagger: 0.14,
-            duration: 0.7,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: cardsRef.current,
-              start: "top 82%",
-            },
-          });
-        }
-      });
     }, sectionWrapperRef);
 
     return () => ctx.revert();
   }, []);
 
+  const containerVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.05,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0.01, y: 18, scale: 0.985 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+    },
+  };
+
   return (
-    <SectionReveal id="proceso" className="relative z-10 px-5 py-24 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div ref={headerRef} className="mx-auto max-w-3xl text-center">
-          <p className="section-kicker">Proceso</p>
-          <h2 className="section-title">Una ruta clara desde la idea hasta el lanzamiento</h2>
+    <section id="proceso" className="relative z-10 px-5 py-24 sm:px-6 lg:px-8">
+      <div ref={sectionWrapperRef} className="mx-auto max-w-7xl">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15, margin: "0px 0px -80px 0px" }}
+          variants={containerVariants}
+        >
+          <motion.div variants={itemVariants} className="mx-auto max-w-3xl text-center">
+          <p className="section-kicker">
+            Proceso
+          </p>
+          <h2 className="section-title">
+            Una ruta clara desde la idea hasta el lanzamiento
+          </h2>
           <p className="section-copy">
             Trabajamos con una metodología simple, transparente y enfocada en resultados
             visibles para tu negocio.
           </p>
-        </div>
+        </motion.div>
 
         <div className="relative mt-16 overflow-hidden">
           <div ref={cardsRef} className="flex flex-col gap-5 lg:flex-row lg:w-max">
             {steps.map((step, index) => (
-              <article
+              <motion.article
+                variants={itemVariants}
                 key={step.title}
-                className="group relative w-full lg:w-[400px] rounded-[1.75rem] border border-white/10 bg-white/[0.045] p-6 backdrop-blur-xl transition hover:border-karyon-purple/55 hover:bg-white/[0.065]"
+                className="group relative w-full lg:w-[400px] rounded-[1.75rem] border border-white/10 bg-white/[0.045] p-6 backdrop-blur-xl transition-colors duration-300 hover:border-karyon-purple/55 hover:bg-white/[0.065]"
               >
                 <div className="mb-7 flex items-center justify-between">
                   <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-karyon-purple text-lg font-semibold shadow-glow">
                     {index + 1}
                   </span>
-                  <step.icon className="h-6 w-6 text-white/52 transition group-hover:scale-110 group-hover:text-karyon-purple" />
+                  <step.icon className="h-6 w-6 text-white/52 transition-transform duration-300 group-hover:scale-110 group-hover:text-karyon-purple" />
                 </div>
                 <h3 className="text-xl font-semibold text-white">{step.title}</h3>
                 <p className="mt-4 leading-7 text-white/60">{step.description}</p>
-              </article>
+              </motion.article>
             ))}
           </div>
         </div>
+        </motion.div>
       </div>
-    </SectionReveal>
+    </section>
   );
 }

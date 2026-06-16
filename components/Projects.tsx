@@ -1,15 +1,29 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import { BarChart3, Boxes, LayoutDashboard, PanelsTopLeft, Server, BrainCircuit } from "lucide-react";
-import { SectionReveal } from "@/components/SectionReveal";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0.01, y: 18, scale: 0.985 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
 
 const solutions = [
   { 
@@ -124,14 +138,20 @@ const solutions = [
 
 import React, { useState } from "react";
 
-function SpotlightCard({ project }: { project: typeof solutions[0] }) {
+function SpotlightCard({ project }: { project: typeof solutions[0] & { variants?: import("framer-motion").Variants } }) {
   const divRef = useRef<HTMLElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [opacity, setOpacity] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const c = project.colorObj;
 
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIsMobile(window.matchMedia("(hover: none)").matches);
+  }, []);
+
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    if (!divRef.current) return;
+    if (isMobile || !divRef.current) return;
     const rect = divRef.current.getBoundingClientRect();
     setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   };
@@ -288,13 +308,12 @@ function SpotlightCard({ project }: { project: typeof solutions[0] }) {
   };
 
   return (
-    <motion.article
+    <article
       ref={divRef}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setOpacity(1)}
-      onMouseLeave={() => setOpacity(0)}
-      whileHover={{ y: -8 }}
-      className={`group relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.045] p-4 backdrop-blur-xl transition ${c.borderHover} hover:bg-white/[0.06]`}
+      onMouseEnter={() => !isMobile && setOpacity(1)}
+      onMouseLeave={() => !isMobile && setOpacity(0)}
+      className={`group relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.045] p-4 backdrop-blur-xl transition-colors transition-transform duration-300 ${c.borderHover} hover:bg-white/[0.06] hover:-translate-y-1 h-full flex flex-col`}
     >
       <div
         className="pointer-events-none absolute -inset-px z-0 opacity-0 transition-opacity duration-300 ease-in-out"
@@ -334,72 +353,42 @@ function SpotlightCard({ project }: { project: typeof solutions[0] }) {
           {project.desc}
         </p>
       </div>
-    </motion.article>
+    </article>
   );
 }
 
 export function Projects() {
-  const headerRef = useRef<HTMLDivElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) return;
-
-    const ctx = gsap.context(() => {
-      if (headerRef.current) {
-        gsap.from(headerRef.current.children, {
-          opacity: 0,
-          y: 40,
-          stagger: 0.2,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: "top 85%",
-          },
-        });
-      }
-
-      if (cardsRef.current) {
-        gsap.from(cardsRef.current.children, {
-          opacity: 0,
-          y: 80,
-          scale: 1.15,
-          stagger: 0.15,
-          duration: 1.2,
-          ease: "expo.out",
-          clearProps: "all",
-          scrollTrigger: {
-            trigger: cardsRef.current,
-            start: "top 80%",
-          },
-        });
-      }
-    }, headerRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <SectionReveal id="soluciones" className="relative z-10 px-5 py-24 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div ref={headerRef} className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <div className="max-w-3xl">
-            <p className="section-kicker">Soluciones que podemos desarrollar</p>
-            <h2 className="section-title text-left">Capacidades técnicas a la medida de tu negocio</h2>
-          </div>
-          <p className="max-w-md text-base leading-7 text-white/60">
+    <section id="soluciones" className="relative z-10 px-5 py-24 sm:px-6 lg:px-8">
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.15, margin: "0px 0px -80px 0px" }}
+        variants={containerVariants}
+        className="mx-auto max-w-7xl"
+      >
+        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <motion.div variants={itemVariants} className="max-w-3xl">
+            <p className="section-kicker">
+              Soluciones que podemos desarrollar
+            </p>
+            <h2 className="section-title text-left">
+              Capacidades técnicas a la medida de tu negocio
+            </h2>
+          </motion.div>
+          <motion.p variants={itemVariants} className="max-w-md text-base leading-7 text-white/60">
             No usamos plantillas limitantes. Construimos herramientas digitales modernas y robustas pensadas para vender, administrar y automatizar de verdad.
-          </p>
+          </motion.p>
         </div>
 
-        <div ref={cardsRef} className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {solutions.map((project) => (
-            <SpotlightCard key={project.title} project={project} />
+            <motion.div variants={itemVariants} key={project.title}>
+              <SpotlightCard project={project} />
+            </motion.div>
           ))}
         </div>
-      </div>
-    </SectionReveal>
+      </motion.div>
+    </section>
   );
 }

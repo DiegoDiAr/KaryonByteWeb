@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Atom, Zap, FileCode2, Palette, Server, Code2, Database, Webhook, Triangle, Github, BrainCircuit } from "lucide-react";
-import { SectionReveal } from "@/components/SectionReveal";
 
 const technologies = [
   { name: "Next.js", icon: Zap },
@@ -19,28 +18,55 @@ const technologies = [
 ];
 
 export function TechStack() {
+  const containerVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.05,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0.01, y: 18, scale: 0.985 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+    },
+  };
+
   return (
-    <SectionReveal id="tecnologias" className="relative z-10 bg-deep-space px-5 py-24 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-16 text-center">
-          <p className="section-kicker mx-auto">Stack Tecnológico</p>
-          <h2 className="section-title mt-4">Tecnologías modernas y escalables</h2>
+    <section id="tecnologias" className="relative z-10 bg-deep-space px-5 py-24 sm:px-6 lg:px-8">
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.15, margin: "0px 0px -80px 0px" }}
+        variants={containerVariants}
+        className="mx-auto max-w-7xl"
+      >
+        <motion.div variants={itemVariants} className="mb-16 text-center">
+          <p className="section-kicker mx-auto !text-electric-blue/90">
+            Stack Tecnológico
+          </p>
+          <h2 className="section-title mt-4">
+            Tecnologías modernas y escalables
+          </h2>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/60">
             Utilizamos herramientas de última generación para construir soluciones rápidas, seguras y preparadas para crecer con tu empresa.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-12">
           {technologies.map((tech, i) => {
             const Icon = tech.icon;
             return (
               <motion.div
+                variants={itemVariants}
                 key={tech.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.5, delay: i * 0.05 }}
-                className={`group relative flex flex-col items-center justify-center gap-3 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-karyon-purple/40 hover:bg-white/[0.04] hover:shadow-[0_0_30px_rgba(115,58,237,0.15)] md:col-span-1 lg:col-span-2 ${
+                className={`group relative flex flex-col items-center justify-center gap-3 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-transform duration-300 hover:-translate-y-1 hover:bg-white/[0.04] md:col-span-1 lg:col-span-2 ${
                   i === 6 ? "lg:col-start-2" : ""
                 }`}
               >
@@ -53,7 +79,7 @@ export function TechStack() {
             );
           })}
         </div>
-      </div>
-    </SectionReveal>
+      </motion.div>
+    </section>
   );
 }
