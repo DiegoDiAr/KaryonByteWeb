@@ -33,13 +33,6 @@ export function Hero() {
       const mm = gsap.matchMedia();
 
       mm.add("(min-width: 1024px)", () => {
-        ScrollTrigger.create({
-          trigger: container.current,
-          start: "top top",
-          end: "+=100%",
-          pin: true,
-          pinSpacing: false,
-        });
 
         gsap.to(titleRef.current, {
           scale: 0.85,
@@ -63,38 +56,28 @@ export function Hero() {
     <section
       ref={container}
       id="inicio"
-      aria-label="Presentación de KarionByte"
+      aria-label="Presentación de KaryonByte"
       className="relative flex min-h-[92svh] w-full items-center justify-center overflow-hidden bg-deep-space px-4 py-10 sm:min-h-[94svh] sm:px-6 sm:py-12 lg:h-screen lg:min-h-screen lg:px-0 lg:py-0"
     >
       <motion.div
         style={shouldReduceMotion ? undefined : { y: backgroundY, scale: backgroundScale }}
-        className="absolute inset-0 z-0 opacity-40 will-change-transform"
+        className="absolute inset-0 z-0 opacity-30 will-change-transform"
       >
         <motion.div
           animate={shouldReduceMotion ? undefined : {
-            rotate: 360,
-            scale: [1, 1.18, 1],
-            x: [0, 10, 0],
-            y: [0, -12, 0],
+            opacity: [0.4, 0.6, 0.4],
+            scale: [1, 1.05, 1],
           }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute left-[10%] top-[20%] h-[56vw] max-h-[360px] min-h-[180px] w-[56vw] min-w-[180px] max-w-[360px] rounded-full bg-karion-purple blur-[90px] mix-blend-screen lg:h-[40vw] lg:w-[40vw] lg:max-w-none lg:blur-[120px]"
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[80vw] max-h-[600px] w-[100vw] max-w-[1000px] rounded-full bg-karyon-purple/40 blur-[120px] mix-blend-screen lg:blur-[150px]"
         />
         <motion.div
           animate={shouldReduceMotion ? undefined : {
-            rotate: -360,
-            scale: [1, 1.34, 1],
-            x: [0, -12, 0],
-            y: [0, 10, 0],
+            opacity: [0.3, 0.5, 0.3],
+            scale: [1, 1.08, 1],
           }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute right-[4%] top-[44%] h-[52vw] max-h-[340px] min-h-[170px] w-[52vw] min-w-[170px] max-w-[340px] rounded-full bg-electric-blue blur-[80px] mix-blend-screen lg:right-[10%] lg:h-[35vw] lg:w-[35vw] lg:max-w-none lg:blur-[100px]"
-        />
-        <motion.div
-          aria-hidden="true"
-          animate={shouldReduceMotion ? undefined : { opacity: [0.25, 0.6, 0.25], scale: [0.96, 1.04, 0.96] }}
-          transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute left-1/2 top-[52%] h-40 w-40 -translate-x-1/2 rounded-full border border-white/10 shadow-[0_0_48px_rgba(115,58,237,0.22)] sm:h-56 sm:w-56 lg:hidden"
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute left-[30%] top-[40%] h-[60vw] max-h-[500px] w-[80vw] max-w-[800px] rounded-full bg-electric-blue/30 blur-[120px] mix-blend-screen lg:blur-[150px]"
         />
       </motion.div>
 
@@ -126,8 +109,8 @@ export function Hero() {
             className="will-change-transform"
           >
             <Image
-              src="/logo-karionbyte.png"
-              alt="KarionByte - Desarrollo de software y páginas web profesionales"
+              src="/logo-karyonbyte.png"
+              alt="KaryonByte - Desarrollo de software y páginas web profesionales"
               width={500}
               height={500}
               priority
@@ -146,21 +129,21 @@ export function Hero() {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="block pb-2 text-white"
           >
-            Desarrollo de
+            Desarrollo de software,
           </motion.span>
           <motion.span
             variants={{ hidden: { opacity: 0, y: 22, filter: "blur(8px)" }, show: { opacity: 1, y: 0, filter: "blur(0px)" } }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="block bg-gradient-to-r from-white via-white to-white/40 bg-clip-text pb-2 text-transparent"
           >
-            software a medida
+            automatización e IA
           </motion.span>
           <motion.span
             variants={{ hidden: { opacity: 0, y: 22, filter: "blur(8px)" }, show: { opacity: 1, y: 0, filter: "blur(0px)" } }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="block bg-gradient-to-r from-karion-purple to-electric-blue bg-clip-text pb-4 text-transparent"
+            className="block bg-gradient-to-r from-karyon-purple to-electric-blue bg-clip-text pb-4 text-transparent"
           >
-            para escalar tu empresa.
+            a medida para empresas.
           </motion.span>
         </h1>
         <motion.p
@@ -168,13 +151,33 @@ export function Hero() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="mx-auto mt-4 max-w-2xl px-1 text-base leading-7 text-white/70 sm:mt-5 sm:px-4 sm:text-xl sm:leading-8"
         >
-          En KarionByte creamos páginas web profesionales, sistemas empresariales y soluciones digitales modernas para negocios que buscan vender más, automatizar procesos y crecer con tecnología real.
+          Creamos soluciones web modernas, escalables y adaptadas a tus procesos para ayudarte a operar mejor, ahorrar tiempo y digitalizar tu negocio.
         </motion.p>
+
+        <motion.div
+          variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:gap-6"
+        >
+          <a
+            href="#contacto"
+            className="border-beam-container group flex w-full items-center justify-center gap-2 rounded-full bg-deep-space px-8 py-3.5 font-medium text-white shadow-[0_0_20px_rgba(115,58,237,0.3)] backdrop-blur-md transition-all hover:scale-105 sm:w-auto"
+          >
+            <span className="relative z-10 flex items-center gap-2">Cotizar mi proyecto</span>
+          </a>
+          <a
+            href="#soluciones"
+            className="group flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-8 py-3.5 font-medium text-white backdrop-blur-md transition-all hover:bg-white/10 sm:w-auto"
+          >
+            <span className="relative z-10">Ver soluciones</span>
+          </a>
+        </motion.div>
+
         <motion.div
           aria-hidden="true"
           variants={{ hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-6 h-12 w-px overflow-hidden rounded-full bg-white/10 sm:mt-8 sm:h-14 lg:hidden"
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+          className="mt-10 h-12 w-px overflow-hidden rounded-full bg-white/10 sm:mt-14 sm:h-14 lg:hidden"
         >
           <motion.div
             animate={shouldReduceMotion ? undefined : { y: ["-100%", "140%"] }}

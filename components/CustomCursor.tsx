@@ -8,8 +8,11 @@ export function CustomCursor() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const [isEnabled, setIsEnabled] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
     const pointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
     const updateEnabledState = () => setIsEnabled(pointerQuery.matches);
 
@@ -50,7 +53,7 @@ export function CustomCursor() {
     };
   }, [isEnabled]);
 
-  if (!isEnabled || typeof document === "undefined") return null;
+  if (!mounted || !isEnabled) return null;
 
   return createPortal(
     <>

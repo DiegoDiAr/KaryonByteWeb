@@ -110,7 +110,7 @@ export function WhyChooseUs() {
     <SectionReveal className="relative z-10 px-5 py-24 sm:px-6 lg:px-8">
       <div ref={sectionRef} className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[0.95fr_1.05fr]">
         <div ref={leftRef}>
-          <p className="section-kicker">Por qué elegir KarionByte</p>
+          <p className="section-kicker">Por qué elegir KaryonByte</p>
           <h2 className="section-title text-left">
             No solo escribimos código. Diseñamos ventajas digitales.
           </h2>
@@ -125,7 +125,7 @@ export function WhyChooseUs() {
                 key={benefit}
                 className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-4 text-white/78"
               >
-                <CheckCircle2 className="h-5 w-5 shrink-0 text-karion-purple" />
+                <CheckCircle2 className="h-5 w-5 shrink-0 text-karyon-purple" />
                 <span className="text-sm font-medium">{benefit}</span>
               </div>
             ))}
@@ -136,7 +136,7 @@ export function WhyChooseUs() {
           ref={rightRef}
           className="relative"
         >
-          <div className="absolute inset-6 rounded-[2rem] bg-karion-purple/25 blur-3xl" />
+          <div className="absolute inset-6 rounded-[2rem] bg-karyon-purple/25 blur-3xl" />
           <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.055] p-5 shadow-glow-lg backdrop-blur-2xl">
             <div className="grid gap-4 sm:grid-cols-2">
               <FeaturePanel
@@ -157,10 +157,10 @@ export function WhyChooseUs() {
                   <p className="text-sm text-white/50">Mapa de impacto</p>
                   <h3 className="mt-1 text-xl font-semibold">De idea a sistema operativo</h3>
                 </div>
-                <Sparkles className="h-5 w-5 text-karion-purple" />
+                <Sparkles className="h-5 w-5 text-karyon-purple" />
               </div>
               <div className="relative min-h-64 overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-5">
-                <div className="absolute left-1/2 top-8 h-[75%] w-px bg-gradient-to-b from-transparent via-karion-purple/70 to-transparent" />
+                <div className="absolute left-1/2 top-8 h-[75%] w-px bg-gradient-to-b from-transparent via-karyon-purple/70 to-transparent" />
                 {["Diagnóstico", "Producto", "Automatización", "Escala"].map((item, index) => (
                   <div
                     key={item}
@@ -169,7 +169,7 @@ export function WhyChooseUs() {
                     <div className="w-[46%] rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-3 text-sm font-medium text-white/76">
                       {item}
                     </div>
-                    <span className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-karion-purple shadow-glow" />
+                    <span className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-karyon-purple shadow-glow" />
                   </div>
                 ))}
               </div>
@@ -195,7 +195,7 @@ function FeaturePanel({
       whileHover={{ y: -6 }}
       className="rounded-[1.5rem] border border-white/10 bg-white/[0.05] p-5"
     >
-      <Icon className="h-6 w-6 text-karion-purple" />
+      <Icon className="h-6 w-6 text-karyon-purple" />
       <h3 className="mt-5 text-lg font-semibold">{title}</h3>
       <p className="mt-3 text-sm leading-6 text-white/58">{description}</p>
     </motion.div>

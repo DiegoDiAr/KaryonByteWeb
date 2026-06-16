@@ -73,8 +73,8 @@ export function Footer() {
       <div ref={columnsRef} className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1.2fr_0.8fr_0.8fr_1fr]">
         <div>
           <Image
-            src="/logo-karionbyte.png"
-            alt="KarionByte"
+            src="/logo-karyonbyte.png"
+            alt="KaryonByte"
             width={240}
             height={72}
             className="h-12 w-auto object-contain"
@@ -93,19 +93,19 @@ export function Footer() {
             Contacto
           </h3>
           <a
-            href="mailto:contacto@karionbyte.com"
+            href="mailto:contacto@karyonbyte.com"
             className="mt-5 flex items-center gap-3 text-white/70 transition hover:text-white"
           >
-            <Mail className="h-4 w-4 text-karion-purple" />
-            contacto@karionbyte.com
+            <Mail className="h-4 w-4 text-karyon-purple" />
+            contacto@karyonbyte.com
           </a>
           <div className="mt-6 flex gap-3">
             {[Instagram, Linkedin, Github].map((Icon, index) => (
               <a
                 key={index}
                 href="#inicio"
-                aria-label="Red social de KarionByte"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.045] text-white/62 transition hover:border-karion-purple/60 hover:text-white hover:shadow-glow"
+                aria-label="Red social de KaryonByte"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.045] text-white/62 transition hover:border-karyon-purple/60 hover:text-white hover:shadow-glow"
               >
                 <Icon className="h-5 w-5" />
               </a>
@@ -115,7 +115,7 @@ export function Footer() {
       </div>
 
       <div ref={bottomRef} className="mx-auto mt-12 flex max-w-7xl flex-col gap-3 border-t border-white/10 pt-6 text-sm text-white/42 sm:flex-row sm:items-center sm:justify-between">
-        <p>© 2026 KarionByte. Todos los derechos reservados.</p>
+        <p>© 2026 KaryonByte. Todos los derechos reservados.</p>
         <p>Desarrollo de soluciones digitales premium.</p>
       </div>
     </footer>

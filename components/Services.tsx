@@ -141,14 +141,14 @@ export function Services() {
             <motion.article
               key={service.title}
               whileHover={{ y: -10, rotateX: 3, rotateY: -3, scale: 1.015 }}
-              className="group relative min-h-[260px] overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.045] p-7 shadow-[0_18px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-colors hover:border-karion-purple/60"
+              className="group relative min-h-[260px] overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.045] p-7 shadow-[0_18px_80px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-colors hover:border-karyon-purple/60"
             >
               <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
-                <div className="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-karion-purple/28 blur-3xl" />
-                <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-karion-purple to-transparent" />
+                <div className="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-karyon-purple/28 blur-3xl" />
+                <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-karyon-purple to-transparent" />
               </div>
               <div className="relative">
-                <div className="mb-7 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] text-karion-purple shadow-glow transition group-hover:scale-110 group-hover:bg-karion-purple group-hover:text-white">
+                <div className="mb-7 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] text-karyon-purple shadow-glow transition group-hover:scale-110 group-hover:bg-karyon-purple group-hover:text-white">
                   <service.icon className="h-6 w-6" />
                 </div>
                 <h3 className="text-xl font-semibold text-white">{service.title}</h3>

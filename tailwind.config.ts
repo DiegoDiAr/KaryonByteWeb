@@ -10,7 +10,7 @@ const config: Config = {
       colors: {
         abyss: "#08000B",
         "deep-space": "#020005",
-        "karion-purple": "#733AED",
+        "karyon-purple": "#733AED",
         "neon-purple": "#B53AED",
         "electric-blue": "#00F0FF"
       },
@@ -24,7 +24,7 @@ const config: Config = {
         "mesh-gradient": "radial-gradient(at 40% 20%, rgba(115,58,237,0.2) 0px, transparent 50%), radial-gradient(at 80% 0%, rgba(0,240,255,0.1) 0px, transparent 50%), radial-gradient(at 0% 50%, rgba(181,58,237,0.15) 0px, transparent 50%)"
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "ui-sans-serif", "system-ui", "sans-serif"]
+        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"]
       },
       keyframes: {
         shimmer: {
