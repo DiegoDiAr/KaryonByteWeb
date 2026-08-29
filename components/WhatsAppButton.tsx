@@ -1,6 +1,6 @@
 "use client";
 
-import { MessageCircle } from "lucide-react";
+import { WhatsappLogo } from "@phosphor-icons/react/ssr";
 import { useEffect, useState } from "react";
 
 export function WhatsAppButton() {
@@ -27,10 +27,9 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"
-      className="group fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-all hover:scale-110 hover:shadow-[0_0_20px_rgba(37,211,102,0.5)] active:scale-95"
+      className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-accent text-paper shadow-[0_10px_26px_rgba(78,17,222,0.32)] transition-transform duration-300 hover:scale-105 active:scale-95"
     >
-      <div className="absolute inset-0 rounded-full bg-[#25D366] opacity-0 transition-opacity group-hover:animate-ping group-hover:opacity-30"></div>
-      <MessageCircle className="h-7 w-7" />
+      <WhatsappLogo weight="fill" className="h-6 w-6" />
     </a>
   );
 }

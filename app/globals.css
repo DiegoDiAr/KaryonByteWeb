@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
-  background: #020005;
+  color-scheme: light;
+  background: #FAF9F4;
 }
 
 * {
@@ -14,162 +14,128 @@
 html {
   width: 100%;
   overflow-x: hidden;
-  background: #020005;
+  background: #FAF9F4;
 }
 
 body {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
-  background-color: #020005;
+  background-color: #FAF9F4;
 }
 
 ::selection {
-  background: rgba(115, 58, 237, 0.55);
-  color: #ffffff;
+  background: rgba(78, 17, 222, 0.18);
+  color: #16160F;
 }
 
 @layer components {
-  .text-gradient {
-    background: linear-gradient(92deg, #ffffff 0%, #cbb8ff 38%, #733aed 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .premium-button {
-    position: relative;
-    display: inline-flex;
-    min-height: 3.5rem;
-    align-items: center;
-    justify-content: center;
-    gap: 0.625rem;
-    overflow: hidden;
-    border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    background:
-      linear-gradient(135deg, rgba(115, 58, 237, 1), rgba(115, 58, 237, 0.68)),
-      #733aed;
-    padding: 0.95rem 1.45rem;
-    color: #ffffff;
-    font-weight: 700;
-    box-shadow: 0 0 38px rgba(115, 58, 237, 0.42);
-    transition:
-      transform 220ms ease,
-      box-shadow 220ms ease,
-      border-color 220ms ease;
-  }
-
-  .premium-button::before {
-    content: "";
-    position: absolute;
+  .grain-overlay {
+    position: fixed;
     inset: 0;
-    transform: translateX(-120%);
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.24), transparent);
-    transition: transform 650ms ease;
+    z-index: 40;
+    pointer-events: none;
+    opacity: 0.045;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  .premium-button:hover {
-    transform: translateY(-2px) scale(1.01);
-    border-color: rgba(255, 255, 255, 0.32);
-    box-shadow: 0 0 58px rgba(115, 58, 237, 0.58);
-  }
-
-  .premium-button:hover::before {
-    transform: translateX(120%);
-  }
-
-  .secondary-button {
+  .btn-solid {
     display: inline-flex;
-    min-height: 3.5rem;
     align-items: center;
     justify-content: center;
-    border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.055);
-    padding: 0.95rem 1.45rem;
-    color: rgba(255, 255, 255, 0.84);
-    font-weight: 700;
-    backdrop-filter: blur(18px);
-    transition:
-      transform 220ms ease,
-      background 220ms ease,
-      border-color 220ms ease;
+    gap: 0.55rem;
+    border-radius: 0.5rem;
+    background: #4E11DE;
+    color: #FAF9F4;
+    padding: 0.85rem 1.5rem;
+    font-family: var(--font-jakarta);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: transform 300ms cubic-bezier(0.19, 1, 0.22, 1), background 300ms ease;
   }
 
-  .secondary-button:hover {
-    transform: translateY(-2px);
-    border-color: rgba(115, 58, 237, 0.72);
-    background: rgba(115, 58, 237, 0.16);
-    color: #ffffff;
+  .btn-solid:hover {
+    background: #3807B7;
   }
 
-  .section-kicker {
-    margin-bottom: 1rem;
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.2em;
+  .btn-solid:active {
+    transform: scale(0.97);
+  }
+
+  .btn-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-jakarta);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #16160F;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid #16160F;
+    transition: color 250ms ease, border-color 250ms ease, gap 250ms ease;
+  }
+
+  .btn-line:hover {
+    color: #4E11DE;
+    border-color: #4E11DE;
+    gap: 0.75rem;
+  }
+
+  .btn-solid-inverse {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    border-radius: 0.5rem;
+    background: #FAF9F4;
+    color: #160B2C;
+    padding: 0.85rem 1.5rem;
+    font-family: var(--font-jakarta);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: transform 300ms cubic-bezier(0.19, 1, 0.22, 1), background 300ms ease;
+  }
+
+  .btn-solid-inverse:hover {
+    background: #EEE6FC;
+  }
+
+  .btn-solid-inverse:active {
+    transform: scale(0.97);
+  }
+
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.48);
+    color: #57554A;
   }
 
-  .section-title {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 54rem;
-    text-wrap: balance;
-    font-size: clamp(2.25rem, 4vw, 4.5rem);
-    font-weight: 650;
-    line-height: 1.05;
-    letter-spacing: 0;
-    color: #ffffff;
-  }
-
-  .section-copy {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 1.25rem;
-    max-width: 44rem;
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: rgba(255, 255, 255, 0.62);
-  }
-
-  .border-beam-container {
-    position: relative;
-    overflow: hidden;
-    border-radius: inherit;
-  }
-
-  .border-beam-container::before {
+  .kicker::before {
     content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    aspect-ratio: 1 / 1;
-    transform: translate(-50%, -50%) rotate(0deg);
-    background: conic-gradient(from 0deg at 50% 50%, transparent 0%, transparent 60%, rgba(115, 58, 237, 0.1) 75%, rgba(115, 58, 237, 0.8) 95%, transparent 100%);
-    animation: border-beam-spin 4s linear infinite;
-    z-index: 0;
+    display: inline-block;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-right: 0.55rem;
+    border-radius: 9999px;
+    background: #4E11DE;
+    vertical-align: middle;
   }
 
-  .border-beam-container::after {
-    content: "";
-    position: absolute;
-    inset: 1px;
-    background: inherit;
-    border-radius: inherit;
-    z-index: 0;
+  .index-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: #4E11DE;
+    font-variant-numeric: tabular-nums;
   }
-}
 
-@keyframes border-beam-spin {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
+  .display-heading {
+    font-family: var(--font-fraunces);
+    font-optical-sizing: auto;
+    letter-spacing: -0.01em;
+    color: #16160F;
   }
 }
 

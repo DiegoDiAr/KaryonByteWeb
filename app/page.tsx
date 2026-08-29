@@ -1,23 +1,24 @@
+import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { Projects as Solutions } from "@/components/Projects";
-import { OwnProduct } from "@/components/OwnProduct";
+import { TrustStrip } from "@/components/TrustStrip";
+import { Services } from "@/components/Services";
+import { Process } from "@/components/Process";
 import { TechStack } from "@/components/TechStack";
-import { WorkFlow } from "@/components/WorkFlow";
-import { Philosophy } from "@/components/Philosophy";
+import { WhyUs } from "@/components/WhyUs";
 import { FooterCTA } from "@/components/FooterCTA";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { CustomCursor } from "@/components/CustomCursor";
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-deep-space text-white selection:bg-karyon-purple selection:text-white">
-      <CustomCursor />
+    <main className="relative min-h-screen bg-paper text-ink selection:bg-accent/20">
+      <div aria-hidden="true" className="grain-overlay" />
+      <Navbar />
       <Hero />
-      <Solutions />
-      <OwnProduct />
+      <TrustStrip />
+      <Services />
+      <Process />
       <TechStack />
-      <WorkFlow />
-      <Philosophy />
+      <WhyUs />
       <FooterCTA />
       <WhatsAppButton />
     </main>

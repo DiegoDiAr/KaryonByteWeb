@@ -1,140 +1,83 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ClipboardCheck, Lightbulb, Rocket, TestTube2 } from "lucide-react";
 import { motion } from "framer-motion";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 const steps = [
   {
-    icon: ClipboardCheck,
-    title: "Analizamos tu negocio",
-    description:
-      "Entendemos tus procesos, objetivos, restricciones y oportunidades digitales."
+    num: "01",
+    title: "Descubrimiento",
+    desc: "Entendemos tu negocio, tus procesos actuales y qué necesita resolver la plataforma antes de diseñar nada.",
   },
   {
-    icon: Lightbulb,
-    title: "Diseñamos la solución",
-    description:
-      "Definimos experiencia, arquitectura, flujos y alcance con una ruta clara."
+    num: "02",
+    title: "Arquitectura",
+    desc: "Definimos base de datos, módulos, integraciones y la ruta técnica completa antes de escribir código de producto.",
   },
   {
-    icon: TestTube2,
-    title: "Desarrollamos y probamos",
-    description:
-      "Construimos con código limpio, iteramos contigo y validamos cada entrega."
+    num: "03",
+    title: "Construcción",
+    desc: "Desarrollamos por etapas revisables, con avances visibles y código limpio desde la primera entrega.",
   },
   {
-    icon: Rocket,
-    title: "Lanzamos y damos soporte",
-    description:
-      "Publicamos, monitoreamos y acompañamos la evolución del producto digital."
-  }
+    num: "04",
+    title: "Validación",
+    desc: "Probamos cada flujo contigo, ajustamos detalles y confirmamos que la solución resuelve el problema real.",
+  },
+  {
+    num: "05",
+    title: "Lanzamiento y soporte",
+    desc: "Publicamos, monitoreamos el comportamiento en producción y seguimos disponibles después de entregar.",
+  },
 ];
 
 export function Process() {
-  const cardsRef = useRef<HTMLDivElement>(null);
-  const sectionWrapperRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) return;
-
-    const ctx = gsap.context(() => {
-      // Horizontal scroll on Desktop
-      const mm = gsap.matchMedia();
-      mm.add("(min-width: 1024px)", () => {
-        if (cardsRef.current && sectionWrapperRef.current) {
-          const totalWidth = cardsRef.current.scrollWidth;
-          const viewportWidth = window.innerWidth;
-
-          gsap.to(cardsRef.current, {
-            x: () => -(totalWidth - viewportWidth + 150),
-            ease: "none",
-            scrollTrigger: {
-              trigger: sectionWrapperRef.current,
-              start: "center center",
-              end: () => `+=${totalWidth}`,
-              pin: true,
-              scrub: 1,
-              anticipatePin: 1,
-            },
-          });
-        }
-      });
-    }, sectionWrapperRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  const containerVariants = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.05,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0.01, y: 18, scale: 0.985 },
-    show: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
-    },
-  };
-
   return (
-    <section id="proceso" className="relative z-10 px-5 py-24 sm:px-6 lg:px-8">
-      <div ref={sectionWrapperRef} className="mx-auto max-w-7xl">
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.15, margin: "0px 0px -80px 0px" }}
-          variants={containerVariants}
-        >
-          <motion.div variants={itemVariants} className="mx-auto max-w-3xl text-center">
-          <p className="section-kicker">
+    <section id="proceso" className="bg-paper-alt px-5 py-24 sm:px-8 sm:py-32">
+      <div className="mx-auto max-w-content">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="kicker lg:col-span-3"
+          >
             Proceso
-          </p>
-          <h2 className="section-title">
-            Una ruta clara desde la idea hasta el lanzamiento
-          </h2>
-          <p className="section-copy">
-            Trabajamos con una metodología simple, transparente y enfocada en resultados
-            visibles para tu negocio.
-          </p>
-        </motion.div>
-
-        <div className="relative mt-16 overflow-hidden">
-          <div ref={cardsRef} className="flex flex-col gap-5 lg:flex-row lg:w-max">
-            {steps.map((step, index) => (
-              <motion.article
-                variants={itemVariants}
-                key={step.title}
-                className="group relative w-full lg:w-[400px] rounded-[1.75rem] border border-white/10 bg-white/[0.045] p-6 backdrop-blur-xl transition-colors duration-300 hover:border-karyon-purple/55 hover:bg-white/[0.065]"
-              >
-                <div className="mb-7 flex items-center justify-between">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-karyon-purple text-lg font-semibold shadow-glow">
-                    {index + 1}
-                  </span>
-                  <step.icon className="h-6 w-6 text-white/52 transition-transform duration-300 group-hover:scale-110 group-hover:text-karyon-purple" />
-                </div>
-                <h3 className="text-xl font-semibold text-white">{step.title}</h3>
-                <p className="mt-4 leading-7 text-white/60">{step.description}</p>
-              </motion.article>
-            ))}
-          </div>
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.05 }}
+            className="display-heading lg:col-span-7 text-[clamp(2rem,3.6vw,3rem)] font-normal leading-[1.12]"
+          >
+            Cinco etapas, un mismo hilo conductor de principio a fin.
+          </motion.h2>
         </div>
-        </motion.div>
+
+        <div className="relative mt-16">
+          {steps.map((step, i) => (
+            <motion.div
+              key={step.num}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.6, delay: i * 0.05, ease: [0.19, 1, 0.22, 1] }}
+              className="grid grid-cols-1 gap-3 border-t border-ink/12 py-8 sm:grid-cols-12 sm:gap-8 sm:py-10"
+            >
+              <span className="display-heading sm:col-span-2 text-4xl italic text-accent/30">
+                {step.num}
+              </span>
+              <h3 className="display-heading sm:col-span-4 text-xl font-normal leading-snug text-ink sm:text-2xl">
+                {step.title}
+              </h3>
+              <p className="font-sans text-[0.95rem] leading-7 text-ink-soft sm:col-span-6">
+                {step.desc}
+              </p>
+            </motion.div>
+          ))}
+          <div className="border-t border-ink/12" />
+        </div>
       </div>
     </section>
   );

@@ -1,13 +1,26 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Fraunces, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import Script from "next/script";
 
-const inter = Inter({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap"
+  variable: "--font-fraunces",
+  display: "swap",
+  axes: ["opsz", "SOFT", "WONK"],
+});
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-jakarta",
+  display: "swap",
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
 });
 
 const SITE_URL = "https://karyonbyte.com";
@@ -15,7 +28,7 @@ const SITE_URL = "https://karyonbyte.com";
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#020005",
+  themeColor: "#FAF9F4",
 };
 
 export const metadata: Metadata = {
@@ -212,7 +225,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.className} bg-abyss text-white antialiased`}>
+      <body className={`${fraunces.variable} ${jakarta.variable} ${mono.variable} bg-paper font-sans text-ink antialiased`}>
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-N2KXBDDF"

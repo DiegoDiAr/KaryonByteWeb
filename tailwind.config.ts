@@ -8,42 +8,56 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        abyss: "#08000B",
-        "deep-space": "#020005",
-        "karyon-purple": "#733AED",
-        "neon-purple": "#B53AED",
-        "electric-blue": "#00F0FF"
-      },
-      boxShadow: {
-        glow: "0 0 36px rgba(115, 58, 237, 0.35)",
-        "glow-lg": "0 0 80px rgba(115, 58, 237, 0.45)",
-        "glow-blue": "0 0 60px rgba(0, 240, 255, 0.35)",
-      },
-      backgroundImage: {
-        "radial-purple": "radial-gradient(circle, rgba(115,58,237,0.35), rgba(8,0,11,0) 58%)",
-        "mesh-gradient": "radial-gradient(at 40% 20%, rgba(115,58,237,0.2) 0px, transparent 50%), radial-gradient(at 80% 0%, rgba(0,240,255,0.1) 0px, transparent 50%), radial-gradient(at 0% 50%, rgba(181,58,237,0.15) 0px, transparent 50%)"
+        paper: "#FAF9F4",
+        "paper-alt": "#F0EAFA",
+        ink: "#16160F",
+        "ink-soft": "#57554A",
+        "ink-faint": "#8B8878",
+        line: "#E4DAF2",
+        "line-soft": "#EDE6F7",
+        accent: "#4E11DE",
+        "accent-deep": "#3807B7",
+        "accent-soft": "#EEE6FC",
+        dusk: "#160B2C",
+        "dusk-soft": "rgba(250, 249, 244, 0.62)",
+        "dusk-line": "rgba(250, 249, 244, 0.14)"
       },
       fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"]
+        serif: ["var(--font-fraunces)", "Georgia", "serif"],
+        sans: ["var(--font-jakarta)", "ui-sans-serif", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "monospace"]
+      },
+      maxWidth: {
+        content: "78rem"
       },
       keyframes: {
-        shimmer: {
-          "0%": { transform: "translateX(-120%)" },
-          "100%": { transform: "translateX(120%)" }
+        "fade-up": {
+          "0%": { opacity: "0", transform: "translateY(18px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" }
         },
-        "marquee-left": {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" }
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" }
         },
-        "marquee-right": {
-          "0%": { transform: "translateX(-50%)" },
-          "100%": { transform: "translateX(0)" }
+        "reveal-line": {
+          "0%": { transform: "scaleX(0)" },
+          "100%": { transform: "scaleX(1)" }
+        },
+        grain: {
+          "0%, 100%": { transform: "translate(0, 0)" },
+          "10%": { transform: "translate(-2%, -4%)" },
+          "30%": { transform: "translate(3%, 2%)" },
+          "50%": { transform: "translate(-4%, 3%)" },
+          "70%": { transform: "translate(2%, -3%)" },
+          "90%": { transform: "translate(-3%, 1%)" }
         }
       },
       animation: {
-        shimmer: "shimmer 4.8s ease-in-out infinite",
-        "marquee-left": "marquee-left 40s linear infinite",
-        "marquee-right": "marquee-right 40s linear infinite"
+        float: "float 6.5s cubic-bezier(0.45, 0, 0.55, 1) infinite",
+        grain: "grain 9s steps(8) infinite"
+      },
+      transitionTimingFunction: {
+        editorial: "cubic-bezier(0.19, 1, 0.22, 1)"
       }
     }
   },

@@ -4,19 +4,27 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, useReducedMotion, type Variants, AnimatePresence } from "framer-motion";
 import { Magnetic } from "./Magnetic";
-import { X } from "lucide-react";
+import { X, EnvelopeSimple, Phone, ArrowUpRight, WhatsappLogo } from "@phosphor-icons/react/ssr";
+import { scrollToSection } from "@/lib/scrollToSection";
+
+const quickLinks = [
+  { label: "Servicios", href: "#servicios" },
+  { label: "Proceso", href: "#proceso" },
+  { label: "Stack", href: "#stack" },
+  { label: "Nosotros", href: "#nosotros" },
+];
 
 export function FooterCTA() {
   const shouldReduceMotion = useReducedMotion();
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 24, filter: "blur(7px)" },
-    show: { opacity: 1, y: 0, filter: "blur(0px)" },
+    hidden: { opacity: 0, y: 22 },
+    show: { opacity: 1, y: 0 },
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const waLink = "https://wa.me/51924206297?text=Hola%2C%20quiero%20cotizar%20mi%20proyecto.";
-  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(waLink)}&bgcolor=ffffff&color=000000`;
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(waLink)}&bgcolor=FAF9F4&color=160B2C`;
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -39,125 +47,136 @@ export function FooterCTA() {
     };
   }, [isModalOpen]);
 
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    scrollToSection(targetId);
+  };
+
   return (
-    <footer
-      id="contacto"
-      aria-label="Contacto y llamada a la acción"
-      className="relative z-0 flex min-h-[610px] w-full flex-col justify-end overflow-hidden bg-[#020005] sm:min-h-[68vh] lg:min-h-[72vh]"
-    >
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_50%,#000_70%,transparent_100%)] sm:bg-[size:4rem_4rem]" />
+    <footer id="contacto" aria-label="Contacto" className="bg-dusk text-paper">
+      <div className="mx-auto max-w-content px-5 pb-20 pt-24 sm:px-8 sm:pb-24 sm:pt-32">
+        <motion.div
+          initial={shouldReduceMotion ? false : "hidden"}
+          whileInView={shouldReduceMotion ? undefined : "show"}
+          viewport={{ once: true, amount: 0.3 }}
+          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
+        >
+          <motion.p variants={itemVariants} transition={{ duration: 0.5 }} className="kicker !text-dusk-soft">
+            Trabajemos juntos
+          </motion.p>
+          <motion.h2
+            variants={itemVariants}
+            transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
+            className="display-heading mt-5 max-w-2xl text-[clamp(2.5rem,6vw,4.5rem)] font-normal italic leading-[1.05] text-paper"
+          >
+            Cuéntanos qué necesita tu negocio.
+          </motion.h2>
+          <motion.p
+            variants={itemVariants}
+            transition={{ duration: 0.6, ease: [0.19, 1, 0.22, 1] }}
+            className="mt-6 max-w-md font-sans text-base leading-7 text-dusk-soft"
+          >
+            Una primera llamada, sin costo, para entender tu proyecto y decirte con honestidad si podemos ayudarte.
+          </motion.p>
 
-      <motion.div
-        aria-hidden="true"
-        animate={shouldReduceMotion ? undefined : { opacity: [0.65, 1, 0.65], scale: [0.98, 1.035, 0.98] }}
-        transition={{ duration: 7.5, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute bottom-0 left-1/2 h-[38vh] w-[90vw] -translate-x-1/2 rounded-full bg-karyon-purple/30 blur-[90px] will-change-transform sm:h-[46vh] sm:w-[80vw] sm:blur-[120px]"
-      />
-      <motion.div
-        aria-hidden="true"
-        animate={shouldReduceMotion ? undefined : { opacity: [0.45, 0.8, 0.45], scale: [1.02, 0.97, 1.02] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-        className="pointer-events-none absolute bottom-[-10vh] left-1/2 h-[28vh] w-[70vw] -translate-x-1/2 rounded-full bg-electric-blue/20 blur-[80px] will-change-transform sm:h-[36vh] sm:w-[40vw] sm:blur-[100px]"
-      />
-
-      <motion.div
-        initial={shouldReduceMotion ? false : "hidden"}
-        whileInView={shouldReduceMotion ? undefined : "show"}
-        viewport={{ once: true, amount: 0.35 }}
-        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.13, delayChildren: 0.08 } } }}
-        className="relative z-10 flex h-full flex-col items-center justify-center px-5 py-14 text-center sm:px-6 sm:py-16 lg:py-20"
-      >
-        <motion.p variants={itemVariants} transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }} className="mb-4 text-xs font-semibold uppercase tracking-[0.22em] text-electric-blue sm:mb-5 sm:text-sm sm:tracking-[0.3em]">
-          El futuro de tu negocio
-        </motion.p>
-        <motion.h2 variants={itemVariants} transition={{ duration: 0.76, ease: [0.16, 1, 0.3, 1] }} className="text-[clamp(3.25rem,17vw,8rem)] font-bold leading-none tracking-normal text-white sm:text-[10vw]">
-          Iniciemos.
-        </motion.h2>
-        <motion.p variants={itemVariants} transition={{ duration: 0.68, ease: [0.22, 1, 0.36, 1] }} className="mb-8 mt-4 max-w-xl text-base leading-7 text-white/60 sm:mb-10 sm:mt-5 sm:text-xl sm:leading-8">
-          Lleva tu negocio al siguiente nivel con una página web profesional, software a medida o automatización de procesos.
-        </motion.p>
-
-        <motion.div variants={itemVariants} transition={{ duration: 0.68, ease: [0.22, 1, 0.36, 1] }} className="mt-1 flex w-full justify-center sm:mt-2 sm:w-auto">
-          <Magnetic>
-            <motion.button
-              onClick={() => setIsModalOpen(true)}
-              whileHover={shouldReduceMotion ? undefined : { y: -4, scale: 1.015 }}
-              whileTap={shouldReduceMotion ? undefined : { scale: 0.965 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="group relative inline-flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-white px-6 py-4 text-base font-bold text-[#020005] shadow-[0_18px_60px_rgba(255,255,255,0.12)] transition-shadow duration-300 hover:shadow-[0_20px_70px_rgba(255,255,255,0.24)] active:shadow-[0_12px_42px_rgba(0,240,255,0.18)] sm:w-auto sm:px-10 sm:py-5 sm:text-lg"
-              aria-label="Abrir modal para cotizar por WhatsApp"
-            >
-              <motion.span
-                aria-hidden="true"
-                animate={shouldReduceMotion ? undefined : { x: ["-140%", "140%"] }}
-                transition={{ duration: 3.2, repeat: Infinity, repeatDelay: 1.8, ease: "easeInOut" }}
-                className="pointer-events-none absolute inset-y-0 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/60 to-transparent opacity-50"
-              />
-              <svg className="h-6 w-6 shrink-0 text-green-500" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
-              </svg>
-              <span className="relative z-10">Cotizar mi proyecto</span>
-            </motion.button>
-          </Magnetic>
+          <motion.div variants={itemVariants} transition={{ duration: 0.6 }} className="mt-10">
+            <Magnetic>
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="btn-solid-inverse"
+                aria-label="Abrir modal para cotizar por WhatsApp"
+              >
+                <WhatsappLogo weight="fill" className="h-5 w-5" />
+                Cotizar por WhatsApp
+              </button>
+            </Magnetic>
+          </motion.div>
         </motion.div>
-      </motion.div>
+
+        <div className="mt-24 grid grid-cols-1 gap-10 border-t border-dusk-line pt-10 sm:grid-cols-3">
+          <div>
+            <span className="font-serif text-lg italic text-paper">KaryonByte</span>
+            <p className="mt-3 max-w-xs font-sans text-sm leading-6 text-dusk-soft">
+              Software, páginas web y automatización a medida para empresas.
+            </p>
+          </div>
+
+          <nav aria-label="Enlaces rápidos" className="flex flex-col gap-3">
+            {quickLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(e) => handleScroll(e, link.href.slice(1))}
+                className="font-sans text-sm text-dusk-soft transition hover:text-paper"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex flex-col gap-3">
+            <a href="mailto:contacto@karyonbyte.com" className="flex items-center gap-2 font-sans text-sm text-dusk-soft transition hover:text-paper">
+              <EnvelopeSimple className="h-4 w-4" />
+              contacto@karyonbyte.com
+            </a>
+            <a href={waLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 font-sans text-sm text-dusk-soft transition hover:text-paper">
+              <Phone className="h-4 w-4" />
+              +51 924 206 297
+            </a>
+          </div>
+        </div>
+
+        <div className="mt-10 flex flex-col items-center gap-2 border-t border-dusk-line pt-6 font-mono text-[0.68rem] uppercase tracking-wide text-dusk-soft sm:flex-row sm:justify-between">
+          <p>&copy; {new Date().getFullYear()} KaryonByte</p>
+          <p>Ecosistemas digitales</p>
+        </div>
+      </div>
 
       {mounted && typeof document !== "undefined" && createPortal(
         <AnimatePresence>
           {isModalOpen && (
             <div className="fixed inset-0 z-[9999] flex items-center justify-center px-4">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="absolute inset-0 bg-[#020005]/80 backdrop-blur-sm"
-              onClick={() => setIsModalOpen(false)}
-            />
-            <motion.div
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 10 }}
-              animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0 }}
-              exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 10 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-sm overflow-hidden rounded-[2rem] border border-white/10 bg-[#080312] p-8 text-center shadow-[0_0_40px_rgba(0,240,255,0.15)]"
-            >
-              <div className="pointer-events-none absolute left-1/2 top-0 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/30 blur-[40px]" />
-              
-              <button
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="absolute inset-0 bg-dusk/90 backdrop-blur-sm"
                 onClick={() => setIsModalOpen(false)}
-                className="absolute right-5 top-5 rounded-full p-2 text-white/50 transition-colors hover:bg-white/5 hover:text-white"
-                aria-label="Cerrar modal"
+              />
+              <motion.div
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
+                animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+                exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 12 }}
+                transition={{ duration: 0.35, ease: [0.19, 1, 0.22, 1] }}
+                className="relative w-full max-w-sm border border-dusk-line bg-dusk p-8 text-center"
               >
-                <X className="h-5 w-5" />
-              </button>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="absolute right-5 top-5 text-dusk-soft transition hover:text-paper"
+                  aria-label="Cerrar modal"
+                >
+                  <X className="h-5 w-5" />
+                </button>
 
-              <h3 className="mb-2 mt-2 text-2xl font-bold text-white">Cotiza tu proyecto por WhatsApp</h3>
-              <p className="mb-6 text-sm text-white/60">Escanea el QR o abre WhatsApp para conversar con nosotros.</p>
+                <h3 className="display-heading mt-2 text-2xl font-normal italic text-paper">Cotiza por WhatsApp</h3>
+                <p className="mt-2 font-sans text-sm text-dusk-soft">Escanea el código o abre WhatsApp directamente.</p>
 
-              <div className="mx-auto mb-8 flex h-48 w-48 items-center justify-center rounded-2xl bg-white p-3 shadow-[0_0_30px_rgba(255,255,255,0.1)]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={qrUrl} alt="Código QR de WhatsApp" className="h-full w-full" />
-              </div>
+                <div className="mx-auto mb-8 mt-6 flex h-48 w-48 items-center justify-center border border-dusk-line bg-paper p-3">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={qrUrl} alt="Código QR de WhatsApp" className="h-full w-full" />
+                </div>
 
-              <a
-                href={waLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-karyon-purple to-electric-blue px-6 py-3.5 font-semibold text-white transition-transform hover:scale-[1.02]"
-              >
-                Abrir WhatsApp
-              </a>
-            </motion.div>
-          </div>
-        )}
+                <a href={waLink} target="_blank" rel="noopener noreferrer" className="btn-solid-inverse w-full justify-center">
+                  Abrir WhatsApp
+                  <ArrowUpRight weight="bold" className="h-4 w-4" />
+                </a>
+              </motion.div>
+            </div>
+          )}
         </AnimatePresence>,
         document.body
       )}
-
-      <div className="relative z-10 flex flex-col items-center justify-center gap-2 border-t border-white/10 px-5 py-4 text-center text-sm text-white/50 sm:flex-row sm:justify-between sm:px-8 sm:py-5">
-        <p>© {new Date().getFullYear()} KaryonByte.</p>
-        <p>Ecosistemas Digitales</p>
-      </div>
     </footer>
   );
 }

@@ -5,3 +5,8 @@ dist
 *.tsbuildinfo
 .env*
 !.env.example
+
+# Local AI tooling / installed skills (not part of the website)
+.agents/
+.claude/
+skills-lock.json
